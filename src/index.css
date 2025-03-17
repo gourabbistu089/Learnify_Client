@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+html,body{
+    overflow-x: hidden;
+}
+
+
+.sun-effect{
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, 
+        rgba(255, 165, 0, 1) 0%, 
+        rgba(255, 215, 0, 0.6) 50%, 
+        rgba(255, 255, 255, 0) 100%);
+    opacity: 1;
+    animation: sunPulse 4s infinite;
+    border-radius: 50%;
+    filter: blur(130px);
+    z-index: 1;
+    opacity: 20;
+}
+
+.moon-effect{
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, 
+        rgb(255, 255, 255) 0%, 
+        rgba(98, 172, 246, 0.6) 50%, 
+        rgba(255, 255, 255, 0) 100%);
+    opacity: 1;
+    animation: sunPulse 4s infinite;
+    border-radius: 50%;
+    filter: blur(130px);
+    z-index: 1;
+    opacity: 20;
+}
+
+@keyframes sunPulse {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.1);
+        opacity: 0.8;
+    }
+}
+
+
+.hompage_bg{
+    background-image: url("./assets/Images/bghome.svg");
+}
+.timelineImg{
+    -webkit-box-shadow: 12px 12px 3px 0px rgba(136,221,242,0.76);
+-moz-box-shadow: 12px 12px 3px 0px rgba(136,221,242,0.76);
+box-shadow: 12px 12px 3px 0px rgba(136,221,242,0.76);
+}
+
+
+@keyframes glowEffect {
+    0% {
+      filter: brightness(50%);
+    }
+    50% {
+      filter: brightness(80%);
+    }
+    100% {
+      filter: brightness(50%);
+    }
+  }
+  .glow {
+    animation: glowEffect 3s infinite ease-in-out; /* Adjust duration as needed */
+  }
+    
+
+  .form-style {
+    --tw-bg-opacity: 1;
+    --tw-text-opacity: 1;
+    --tw-shadow: 0 1px 0 0;
+    --tw-shadow-colored: 0 1px 0 0 var(--tw-shadow-color);
+    --tw-shadow-color: hsla(0,0%,100%,.5);
+    --tw-shadow: var(--tw-shadow-colored);
+    background-color: rgb(44 51 63/var(--tw-bg-opacity));
+    border-radius: .5rem;
+    box-shadow: 0 0 #0000,0 0 #0000,var(--tw-shadow);
+    box-shadow: var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow);
+    color: rgb(241 242 255/var(--tw-text-opacity));
+    font-size: 16px;
+    line-height: 24px;
+    padding: .75rem;
+}
+
+
