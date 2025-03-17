@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { resetPassword } from '../services/apiCalls/authCall';
-import { RiLockPasswordLine, RiLockPasswordFill, RiShieldKeyholeLine } from "react-icons/ri";
+import { RiLockPasswordLine, RiLockPasswordFill } from "react-icons/ri";
 import { FaEyeSlash, FaEye, FaArrowLeft } from "react-icons/fa";
+import { RiShieldKeyholeLine } from "react-icons/ri";
 
 function UpdatePassword() {
     const dispatch = useDispatch();
@@ -21,7 +22,6 @@ function UpdatePassword() {
     });
     const [passwordsMatch, setPasswordsMatch] = useState(true);
 
-    // Calculate password strength
     useEffect(() => {
         const calculateStrength = (password) => {
             let strength = 0;
@@ -34,8 +34,7 @@ function UpdatePassword() {
         };
 
         setPasswordStrength(calculateStrength(formData.password));
-
-        // Check if passwords match
+        
         if (formData.confirmPassword) {
             setPasswordsMatch(formData.password === formData.confirmPassword);
         }
@@ -53,9 +52,9 @@ function UpdatePassword() {
     };
 
     const getStrengthColor = () => {
-        if (passwordStrength <= 1) return "#FF4D4F";
-        if (passwordStrength <= 3) return "#FAAD14";
-        return "#52C41A";
+        if (passwordStrength <= 1) return "#FF4D4F"; // Red
+        if (passwordStrength <= 3) return "#FAAD14"; // Yellow
+        return "#52C41A"; // Green
     };
 
     const getStrengthText = () => {
@@ -64,7 +63,6 @@ function UpdatePassword() {
         return "Strong";
     };
 
-    // Framer Motion variants
     const pageVariants = {
         hidden: { opacity: 0 },
         visible: { opacity: 1, transition: { duration: 0.8, ease: "easeOut" } },
@@ -106,13 +104,12 @@ function UpdatePassword() {
         },
         hover: { 
             scale: 1.05,
-            boxShadow: "0 10px 20px rgba(99, 102, 241, 0.4)",
+            boxShadow: "0 10px 20px #6366F166", // Indigo with 40% opacity
             transition: { duration: 0.3 }
         },
         tap: { scale: 0.95 }
     };
 
-    // Floating background shapes
     const shapes = [
         { x: "10%", y: "10%", size: 100, delay: 0 },
         { x: "80%", y: "20%", size: 120, delay: 0.3 },
@@ -126,18 +123,19 @@ function UpdatePassword() {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#13111C] via-[#171429] to-[#13111C] p-4 overflow-hidden relative"
+            className="min-h-screen flex items-center justify-center bg-gradient-to-br from-#13111C via-#171429 to-#13111C p-4 overflow-hidden relative"
+            style={{ background: "linear-gradient(135deg, #13111C 0%, #171429 50%, #13111C 100%)" }} // Dark purple gradient
         >
-            {/* Floating background shapes */}
             {shapes.map((shape, index) => (
                 <motion.div
                     key={index}
-                    className="absolute rounded-full bg-gradient-to-r from-[#6366F1]/10 to-[#8B5CF6]/10 blur-3xl"
+                    className="absolute rounded-full blur-3xl"
                     style={{ 
                         left: shape.x, 
                         top: shape.y, 
                         width: shape.size, 
-                        height: shape.size 
+                        height: shape.size,
+                        background: "linear-gradient(90deg, #6366F11A, #8B5CF61A)" // Indigo to Purple with 10% opacity
                     }}
                     initial={{ opacity: 0.3 }}
                     animate={{ 
@@ -163,12 +161,14 @@ function UpdatePassword() {
                     className="flex flex-col items-center justify-center text-white"
                 >
                     <motion.div 
-                        className="w-20 h-20 rounded-full border-4 border-[#6366F1] border-t-transparent"
+                        className="w-20 h-20 rounded-full border-4 border-t-transparent"
+                        style={{ borderColor: "#6366F1" }} // Indigo
                         animate={{ rotate: 360 }}
                         transition={{ duration: 1.5, ease: "linear", repeat: Infinity }}
                     />
                     <motion.p 
-                        className="mt-6 text-xl font-medium bg-clip-text text-transparent bg-gradient-to-r from-[#6366F1] to-[#8B5CF6]"
+                        className="mt-6 text-xl font-medium bg-clip-text text-transparent"
+                        style={{ background: "linear-gradient(90deg, #6366F1, #8B5CF6)" }} // Indigo to Purple
                         initial={{ opacity: 0 }}
                         animate={{ opacity: [0, 1, 0] }}
                         transition={{ duration: 2, repeat: Infinity }}
@@ -181,34 +181,44 @@ function UpdatePassword() {
                     variants={formVariants}
                     initial="hidden"
                     animate="visible"
-                    className="w-full max-w-md bg-[#1E1A2D]/90 backdrop-blur-xl rounded-2xl shadow-[0_25px_60px_-15px_rgba(99,102,241,0.25)] overflow-hidden border border-[#6366F1]/20"
+                    className="w-full max-w-md rounded-2xl shadow-[0_25px_60px_-15px_#6366F140] overflow-hidden"
+                    style={{ 
+                        backgroundColor: "#1E1A2DE6", // Dark purple with 90% opacity
+                        backdropFilter: "blur(24px)",
+                        border: "1px solid #6366F133" // Indigo with 20% opacity
+                    }}
                 >
                     <div className="p-10">
                         <motion.div 
                             className="flex items-center justify-center mb-8"
                             variants={itemVariants}
                         >
-                            <div className="h-20 w-20 rounded-full bg-gradient-to-br from-[#6366F1] to-[#8B5CF6] flex items-center justify-center">
+                            <div 
+                                className="h-20 w-20 rounded-full flex items-center justify-center"
+                                style={{ background: "linear-gradient(135deg, #6366F1, #8B5CF6)" }} // Indigo to Purple
+                            >
                                 <motion.div
                                     initial={{ rotate: 0 }}
                                     animate={{ rotate: 360 }}
                                     transition={{ duration: 3, ease: "linear", repeat: Infinity }}
                                 >
-                                    <RiShieldKeyholeLine size={36} className="text-white" />
+                                    <RiShieldKeyholeLine size={36} style={{ color: "#FFFFFF" }} /> {/* White */}
                                 </motion.div>
                             </div>
                         </motion.div>
 
                         <motion.h1 
-                            className="text-3xl font-bold text-white mb-2 text-center bg-clip-text text-transparent bg-gradient-to-r from-[#6366F1] to-[#8B5CF6]"
+                            className="text-3xl font-bold text-white mb-2 text-center bg-clip-text text-transparent"
                             variants={itemVariants}
+                            style={{ background: "linear-gradient(90deg, #6366F1, #8B5CF6)" }} // Indigo to Purple
                         >
                             Reset Password
                         </motion.h1>
                         
                         <motion.p 
-                            className="text-[#A0AEC0] text-center mb-8"
+                            className="text-center mb-8"
                             variants={itemVariants}
+                            style={{ color: "#A0AEC0" }} // Light gray
                         >
                             Create a new secure password for your account
                         </motion.p>
@@ -216,24 +226,32 @@ function UpdatePassword() {
                         <form onSubmit={handleOnSubmit} className="space-y-6">
                             <motion.div variants={itemVariants} className="space-y-2">
                                 <label className="block">
-                                    <div className="flex items-center text-[#E2E8F0] font-medium mb-2">
+                                    <div className="flex items-center font-medium mb-2" style={{ color: "#E2E8F0" }}> {/* Slate */}
                                         <RiLockPasswordLine className="mr-2" />
-                                        <p>New Password <span className="text-[#F56565]">*</span></p>
+                                        <p>New Password <span style={{ color: "#F56565" }}>*</span></p> {/* Red */}
                                     </div>
                                     <div className="relative group">
                                         <input
                                             type={showPassword ? "text" : "password"}
                                             name="password"
                                             required
-                                            className="w-full px-5 py-4 bg-[#2D2A3D] text-white rounded-xl border border-[#4A5568] focus:outline-none focus:ring-2 focus:ring-[#6366F1] transition-all duration-300 pr-12"
+                                            className="w-full px-5 py-4 rounded-xl transition-all duration-300 pr-12"
                                             placeholder="Enter your new password"
                                             value={formData.password}
                                             onChange={handleOnChange}
+                                            style={{ 
+                                                backgroundColor: "#2D2A3D", // Dark purple
+                                                color: "#FFFFFF", // White
+                                                borderColor: "#4A5568", // Gray
+                                                outline: "none",
+                                                boxShadow: "none"
+                                            }}
                                         />
                                         <motion.span 
-                                            className="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer text-[#A0AEC0] hover:text-white transition duration-200"
+                                            className="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer transition duration-200"
                                             whileHover={{ scale: 1.1 }}
                                             whileTap={{ scale: 0.9 }}
+                                            style={{ color: "#A0AEC0" }} // Light gray
                                         >
                                             {showPassword ? (
                                                 <FaEyeSlash 
@@ -248,10 +266,11 @@ function UpdatePassword() {
                                             )}
                                         </motion.span>
                                         <motion.div 
-                                            className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] rounded-full"
+                                            className="absolute -bottom-1 left-0 h-0.5 rounded-full"
                                             initial={{ width: "0%" }}
                                             animate={{ width: `${(passwordStrength / 5) * 100}%` }}
                                             transition={{ duration: 0.3 }}
+                                            style={{ background: "linear-gradient(90deg, #6366F1, #8B5CF6)" }} // Indigo to Purple
                                         />
                                     </div>
                                     {formData.password && (
@@ -261,7 +280,7 @@ function UpdatePassword() {
                                             animate={{ opacity: 1, height: 'auto' }}
                                             transition={{ duration: 0.3 }}
                                         >
-                                            <p className="text-xs mr-2">Strength:</p>
+                                            <p className="text-xs mr-2" style={{ color: "#A0AEC0" }}>Strength:</p> {/* Light gray */}
                                             <p className="text-xs font-medium" style={{ color: getStrengthColor() }}>
                                                 {getStrengthText()}
                                             </p>
@@ -272,9 +291,9 @@ function UpdatePassword() {
 
                             <motion.div variants={itemVariants} className="space-y-2">
                                 <label className="block">
-                                    <div className="flex items-center text-[#E2E8F0] font-medium mb-2">
+                                    <div className="flex items-center font-medium mb-2" style={{ color: "#E2E8F0" }}> {/* Slate */}
                                         <RiLockPasswordFill className="mr-2" />
-                                        <p>Confirm Password <span className="text-[#F56565]">*</span></p>
+                                        <p>Confirm Password <span style={{ color: "#F56565" }}>*</span></p> {/* Red */}
                                     </div>
                                     <div className="relative group">
                                         <input
@@ -283,13 +302,21 @@ function UpdatePassword() {
                                             required
                                             placeholder="Confirm your new password"
                                             value={formData.confirmPassword}
-                                            className={`w-full px-5 py-4 bg-[#2D2A3D] text-white rounded-xl border ${!passwordsMatch && formData.confirmPassword ? 'border-[#FF4D4F]' : 'border-[#4A5568]'} focus:outline-none focus:ring-2 focus:ring-[#6366F1] transition-all duration-300 pr-12`}
+                                            className="w-full px-5 py-4 rounded-xl transition-all duration-300 pr-12"
                                             onChange={handleOnChange}
+                                            style={{ 
+                                                backgroundColor: "#2D2A3D", // Dark purple
+                                                color: "#FFFFFF", // White
+                                                borderColor: !passwordsMatch && formData.confirmPassword ? "#FF4D4F" : "#4A5568", // Red or Gray
+                                                outline: "none",
+                                                boxShadow: "none"
+                                            }}
                                         />
                                         <motion.span 
-                                            className="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer text-[#A0AEC0] hover:text-white transition duration-200"
+                                            className="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer transition duration-200"
                                             whileHover={{ scale: 1.1 }}
                                             whileTap={{ scale: 0.9 }}
+                                            style={{ color: "#A0AEC0" }} // Light gray
                                         >
                                             {showConfirmPassword ? (
                                                 <FaEyeSlash 
@@ -306,10 +333,11 @@ function UpdatePassword() {
                                     </div>
                                     {!passwordsMatch && formData.confirmPassword && (
                                         <motion.p 
-                                            className="mt-1 text-[#FF4D4F] text-xs"
+                                            className="mt-1 text-xs"
                                             initial={{ opacity: 0, y: -10 }}
                                             animate={{ opacity: 1, y: 0 }}
                                             transition={{ duration: 0.3 }}
+                                            style={{ color: "#FF4D4F" }} // Red
                                         >
                                             Passwords don't match
                                         </motion.p>
@@ -323,17 +351,36 @@ function UpdatePassword() {
                                 whileTap="tap"
                                 type="submit"
                                 disabled={!passwordsMatch}
-                                className="w-full bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] text-white py-4 px-6 rounded-xl font-medium shadow-lg hover:shadow-xl transition duration-300 relative overflow-hidden group"
+                                className="w-full py-4 px-6 rounded-xl font-medium shadow-lg transition duration-300 relative overflow-hidden group"
+                                style={{ 
+                                    background: "linear-gradient(90deg, #6366F1, #8B5CF6)", // Indigo to Purple
+                                    color: "#FFFFFF" // White
+                                }}
                             >
-                                <span className="relative z-10">Update Password</span>
+                                <span className="relative z-10">Reset Password</span>
                                 <motion.span 
-                                    className="absolute inset-0 bg-gradient-to-r from-[#8B5CF6] to-[#6366F1] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 0 }}
-                                    whileHover={{ opacity: 1 }}
+                                    className="absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity duration-300"
+                                    initial={{ scale: 0 }}
+                                    animate={{ scale: 1 }}
+                                    transition={{ duration: 0.5 }}
+                                    style={{ background: "linear-gradient(90deg, #8B5CF6, #6366F1)" }} // Purple to Indigo
                                 />
                             </motion.button>
                         </form>
+
+                        <motion.div 
+                            className="mt-6 text-center"
+                            variants={itemVariants}
+                        >
+                            <Link 
+                                to="/login" 
+                                className="flex items-center justify-center transition duration-200"
+                                style={{ color: "#A0AEC0" }} // Light gray
+                            >
+                                <FaArrowLeft className="mr-2" />
+                                Back to Login
+                            </Link>
+                        </motion.div>
                     </div>
                 </motion.div>
             )}
