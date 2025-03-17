@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { resetPassword } from '../services/apiCalls/authCall';
-import { RiLockPasswordLine, RiLockPasswordFill } from "react-icons/ri";
+import { RiLockPasswordLine, RiLockPasswordFill, RiShieldKeyholeLine } from "react-icons/ri";
 import { FaEyeSlash, FaEye, FaArrowLeft } from "react-icons/fa";
-import { RiShieldKeyholeLine } from "react-icons/ri";
 
 function UpdatePassword() {
     const dispatch = useDispatch();
@@ -35,7 +34,7 @@ function UpdatePassword() {
         };
 
         setPasswordStrength(calculateStrength(formData.password));
-        
+
         // Check if passwords match
         if (formData.confirmPassword) {
             setPasswordsMatch(formData.password === formData.confirmPassword);
@@ -328,26 +327,13 @@ function UpdatePassword() {
                             >
                                 <span className="relative z-10">Update Password</span>
                                 <motion.span 
-                                    className="absolute inset-0 bg-gradient-to-r from-[#8B5CF6] to-[#6366F1] opacity-0 group-hover:opacity-30 transition-opacity duration-300"
-                                    initial={{ scale: 0 }}
-                                    animate={{ scale: 1 }}
-                                    transition={{ duration: 0.5 }}
+                                    className="absolute inset-0 bg-gradient-to-r from-[#8B5CF6] to-[#6366F1] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 0 }}
+                                    whileHover={{ opacity: 1 }}
                                 />
                             </motion.button>
                         </form>
-
-                        <motion.div 
-                            className="mt-6 text-center"
-                            variants={itemVariants}
-                        >
-                            <Link 
-                                to="/login" 
-                                className="flex items-center justify-center text-[#A0AEC0] hover:text-white transition duration-200"
-                            >
-                                <FaArrowLeft className="mr-2" />
-                                Back to Login
-                            </Link>
-                        </motion.div>
                     </div>
                 </motion.div>
             )}
