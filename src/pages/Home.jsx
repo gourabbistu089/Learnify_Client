@@ -3,10 +3,6 @@ import { FaArrowRight } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import HighlightText from "../components/core/Homepage/HighlightText";
 import CTAButton from "../components/core/Homepage/Button";
-
-import Banner from "../assets/Images/Banner.mp4";
-import Banner1 from "../assets/Images/Banner1.mp4";
-import Banner2 from "../assets/Images/Banner2.mp4";
 import CodeBlocks from "../components/core/Homepage/CodeBlocks";
 import TimeLineSection from "../components/core/Homepage/TimeLineSection";
 import LearningSection from "../components/core/Homepage/LearningSection";
