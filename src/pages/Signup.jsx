@@ -5,7 +5,7 @@ import {
   AiOutlineEye,
   AiOutlineEyeInvisible,
 } from "react-icons/ai";
-import p from "../assets/p.png";
+import p from "../assets/Images/signup.webp";
 
 import {setSignUpData} from '../redux/slices/authSlice'
 import { useDispatch } from "react-redux";
@@ -50,13 +50,13 @@ const Signup = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-900 via-black to-gray-900 text-white">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-[#1A202C] via-[#000000] to-[#121418] text-white">
       <div className="container max-w-6xl bg-gray-800 p-8 rounded-xl shadow-xl">
-        <div className="text-center mb-6">
-          <h2 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-200">
+        <div className="text-center mb-6 -mt-2 md:-mt-4">
+          <h2 className="text-4xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-200">
             Welcome to Our Community
           </h2>
-          <p className="text-gray-300 text-lg">
+          <p className="text-gray-300 text-sm sm:text-lg">
             Create your account to unlock exciting features and opportunities.
           </p>
         </div>
@@ -140,9 +140,9 @@ const Signup = () => {
                 />
               </label>
 
-              <div className="flex gap-x-4">
+              <div className="flex gap-x-4 md:flex-row flex-col">
                 <label className="relative flex-1">
-                  <p className="mb-1 text-sm text-gray-400">
+                  <p className="mb-1 text-sm text-gray-400 ">
                     Create Password <sup className="text-pink-200">*</sup>
                   </p>
                   <input
@@ -203,7 +203,7 @@ const Signup = () => {
 
               <button
                 type="submit"
-                className="mt-6 w-full rounded-lg bg-[#FCD34D] py-3 text-lg font-semibold text-black shadow-lg hover:opacity-90 focus:outline-none focus:ring-4 focus:ring-yellow-300"
+                className="mt-6 w-full rounded-lg bg-[#d8b234] py-3 text-lg font-semibold text-black shadow-lg hover:opacity-90 focus:outline-none focus:ring-4 focus:ring-yellow-300"
               >
                 Create Account
               </button>

@@ -33,7 +33,7 @@ function ProfileDropdown() {
         <>
           <img
             src={user?.image}
-            className="aspect-square w-[40px] rounded-full object-cover cursor-pointer border-2 border-purple-400 shadow-lg hover:scale-105 transition-transform"
+            className="aspect-square w-[38px] md:w-[40px] rounded-full object-cover cursor-pointer border-2 border-purple-400 shadow-lg hover:scale-105 transition-transform"
             alt={`profile-${user?.firstName}`}
             onClick={() => setIsOpen((prev) => !prev)}
           />
@@ -41,11 +41,11 @@ function ProfileDropdown() {
           {isOpen && (
             <div
               ref={dropdownRef}
-              className="absolute left-[40%] top-12  bg-gray-800 text-white rounded-lg shadow-xl border border-gray-600 z-50 transform scale-100 duration-200 
+              className="absolute -right-[175%] md:left-[40%] top-12  bg-gray-800 text-white rounded-lg shadow-xl border border-gray-600 z-50 transform scale-100 duration-200 
            
               bg-richblack-800 -translate-x-1"
             >
-              <div className="flex flex-col py-3">
+              <div className="flex flex-col py-1 md:py-3">
              
                 {/* Menu Options */}
                 <button

@@ -1,6 +1,6 @@
-import { legacy_createStore } from "@reduxjs/toolkit";
 
-const BASE_URL = import.meta.env.VITE_BASE_URL;
+import { BASE_URL } from "../utils/constants.js";
+
 export const categories = {
     CATEGORIES_API : `${BASE_URL}/courses/showAllCategories`,
 }

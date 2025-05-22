@@ -1,18 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getPasswordResetToken } from "../services/apiCalls/authCall";
 import { FaEnvelope, FaSpinner } from "react-icons/fa";
 import { BiArrowBack } from "react-icons/bi";
+import { time } from "framer-motion";
 
 function ForgotPassword() {
   const { loading } = useSelector((state) => state.auth);
   const [emailSent, setEmailSent] = useState(false);
   const [email, setEmail] = useState("");
   const dispatch = useDispatch();
+  const[countdown, setCountdown] = useState(0);
+
+  useEffect(()=>{
+    let timer;
+    if(countdown > 0){
+      timer = setTimeout(()=>setCountdown(countdown - 1), 1000);
+    }
+    return ()=> clearTimeout(timer);
+  },[countdown]);
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
+    setCountdown(30);
     dispatch(getPasswordResetToken({ email, setEmailSent }));
   };
 
@@ -62,10 +73,15 @@ function ForgotPassword() {
             )}
             <button
               type="submit"
-              className="w-full bg-yellow-200 hover:bg-yellow-300 text-black px-6 py-3 rounded-md text-sm font-bold transition-all"
+              disabled={countdown > 0}
+              className={`w-full text-black px-6 py-3 rounded-md text-sm font-bold transition-all
+                ${countdown > 0 ? "cursor-not-allowed  bg-[#af974af8] " : " bg-yellow-200 hover:bg-yellow-300"}
+                `}
               onClick={handleOnSubmit}
             >
-              {!emailSent ? "Reset Password" : "Resend Email"}
+              {!emailSent ? "Reset Password" : 
+              countdown > 0 ? `Resend in ${countdown}s` : "Resend Email"
+              }
             </button>
           </form>
 

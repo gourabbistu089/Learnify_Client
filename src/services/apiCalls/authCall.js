@@ -8,7 +8,8 @@ import {
 import { setUser as setUserProfile } from "../../redux/slices/profileSlice";
 
 import { authEndpoints } from "../api"; // Define your login endpoint in authEndpoints.
-import toast from "react-hot-toast";
+// import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 
 export const sendOtp =
   ({ email, navigate }) =>
@@ -21,12 +22,11 @@ export const sendOtp =
       console.log(response);
       if (response.status === 200) {
         // OTP sent successfully
-        console.log("OTP sent successfully");
+        // console.log("OTP sent successfully");
         toast.success("OTP sent successfully");
         navigate("/verify-otp");
       } else {
         // Handle failed OTP sending
-
         console.error(response.data.message || "Failed to send OTP");
         toast.error(response.data.message || "Failed to send OTP");
       }
@@ -64,15 +64,16 @@ export const signup =
       if (response.status === 200) {
         // Signup successful
         console.log("Signup successful");
+        toast.success("Signup successful");
         navigate("/login");
       } else {
         // Handle failed signup
         console.error(response.data.message || "Signup failed");
-        alert(response.data.message || "Signup failed");
+        toast.error(response.data.message || "Signup failed");
       }
     } catch (error) {
       console.error("Error signing up:", error);
-      alert("Something went wrong. Please try again later.");
+      toast.error("Something went wrong. Please try again later.");
     } finally {
       dispatch(setLoading(false));
     }
@@ -115,7 +116,8 @@ export const login =
       } else {
         // Handle failed login
         console.error(response.data.message || "Login failed");
-        alert(response.data.message || "Invalid credentials");
+        // alert(response.data.message || "Invalid credentials");
+        toast.error(response.data.message || "Invalid credentials");
       }
     } catch (error) {
       console.error("Error logging in:", error);

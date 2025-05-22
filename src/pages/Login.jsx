@@ -8,6 +8,7 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../services/apiCalls/authCall"
+import LoginImg from "../assets/Images/login.webp"
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -28,7 +29,7 @@ const Login = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-900 via-black to-gray-900 text-white font-sans">
-      <div className="container max-w-4xl flex flex-col md:flex-row bg-gray-800 rounded-xl shadow-2xl overflow-hidden">
+      <div className="container max-w-4xl flex flex-col bg-gray-800 rounded-xl shadow-2xl overflow-hidden md:flex-row-reverse">
         {/* Left Side Login Form */}
         <div className="w-full md:w-1/2 p-8 flex flex-col justify-center">
           <h2 className="text-4xl font-extrabold mb-3 text-center">Welcome Back</h2>
@@ -113,7 +114,7 @@ const Login = () => {
         <div className="w-full md:w-1/2 flex items-center justify-center">
           <img
             className="w-full h-full object-cover"
-            src="https://media.istockphoto.com/id/1979416137/photo/cyber-security-and-security-password-login-online-concept-hands-typing-and-entering-username.jpg?s=612x612&w=0&k=20&c=M0dt2GRIfLawJjb7PeKM7h_Hl0YSi6CsAqRC7oxPfx8="
+            src={LoginImg}
             alt="Login Illustration"
           />
         </div>

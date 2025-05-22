@@ -35,12 +35,12 @@ import { motion, AnimatePresence } from "framer-motion";
 
 export default function App() {
   const { user } = useSelector((state) => state.auth);
-  
+
   const [showButton, setShowButton] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY >200) {
+      if (window.scrollY > 200) {
         setShowButton(true);
       } else {
         setShowButton(false);
@@ -58,11 +58,22 @@ export default function App() {
     });
   };
 
-
   return (
     <div className=" w-screen min-h-screen bg-richblack-900 flex flex-col font-inter ">
-      <ToastContainer />
-      <Navbar />
+     <ToastContainer
+        theme="dark" // 👈 sets the dark background
+        position="top-right" // or 'bottom-right', etc.
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+     <div className="mb-12">
+       <Navbar />
+     </div>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -123,48 +134,44 @@ export default function App() {
           <Route path="dashboard/setting" element={<Setting />} />
           {user?.accountType === "instructor" && (
             <>
-            <Route path="dashboard/add-course" element={<AddCourse />} />
-            <Route path="dashboard/my-courses" element={<MyCourses />} />
-            <Route path="dashboard/edit-course/:courseId" element={<EditCourse />} />
-            <Route path="dashboard/home" element={<IHome />} />
+              <Route path="dashboard/add-course" element={<AddCourse />} />
+              <Route path="dashboard/my-courses" element={<MyCourses />} />
+              <Route
+                path="dashboard/edit-course/:courseId"
+                element={<EditCourse />}
+              />
+              <Route path="dashboard/home" element={<IHome />} />
             </>
           )}
           {user?.accountType === "student" && (
             <>
-            <Route path="dashboard/home" element={<SHome />} />
+              <Route path="dashboard/home" element={<SHome />} />
               <Route
-                path="dashboard/enrolled-courses" element={<EnrolledCourses />}
+                path="dashboard/enrolled-courses"
+                element={<EnrolledCourses />}
               />
               <Route path="dashboard/assignments" element={<Assignments />} />
               <Route path="dashboard/cart" element={<Cart />} />
-
-
             </>
           )}
         </Route>
 
-
-
-
-          <Route
+        <Route
           element={
             <ProtectedRoute>
               <ViewCourse />
             </ProtectedRoute>
           }
-          >
-
-           {
-            user?.accountType === "student" && (
-             <>
-             <Route path="view-course/:courseId/:section/:sectionId/sub-section/:subSectionId" element={<VideoDetails />} />
-             </>
-            )
-           } 
-
-          </Route>
-          
-
+        >
+          {user?.accountType === "student" && (
+            <>
+              <Route
+                path="view-course/:courseId/:section/:sectionId/sub-section/:subSectionId"
+                element={<VideoDetails />}
+              />
+            </>
+          )}
+        </Route>
 
         <Route path="*" element={<ErrorPage />} />
       </Routes>
@@ -185,9 +192,3 @@ export default function App() {
     </div>
   );
 }
-
-
-
-
-
-
