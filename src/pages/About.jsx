@@ -41,7 +41,7 @@ const imageVariants = {
 
 const AboutUs = () => {
   return (
-    <div className="font-inter text-richblack-100">
+    <div className="font-inter text-richblack-100 md:mt-0 -mt-12">
       {/* Hero Section */}
       <motion.section 
         initial={{ opacity: 0, y: 50 }}
@@ -54,7 +54,7 @@ const AboutUs = () => {
             initial={{ opacity: 0 , x:50 }}
             animate={{ opacity: 1 , x:0 }}
             transition={{ delay: 0.2 , duration:0.5}}
-            className="text-4xl md:text-6xl font-bold mb-6"
+            className="text-6xl md:text-6xl font-bold mb-6"
           >
             Welcome to <HighlightText text = "Learnify"/>
           </motion.h1>
@@ -62,7 +62,7 @@ const AboutUs = () => {
             initial={{ opacity: 0, x:-50 }}
             animate={{ opacity: 1 , x:0 }}
             transition={{ delay: 0.3 , duration:0.6}}
-            className="text-lg md:text-xl mb-8"
+            className="text-sm md:px-0 px-6 md:text-xl mb-8"
           >
             Empowering Future Coders with Real-World Skills and Knowledge. <span className="text-[#12D8FA]">Let's fire on code</span>
           </motion.p>
@@ -77,7 +77,7 @@ const AboutUs = () => {
             Get Started Today
           </motion.button>
         </div>
-        <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-richblue-900"></div>
+        <div className="absolute bottom-0 left-0 w-full md:h-16 h-1 bg-gradient-to-t from-richblue-900 "></div>
       </motion.section>
 
       {/* Founding Story */}

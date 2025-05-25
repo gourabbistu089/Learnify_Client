@@ -6,7 +6,7 @@ function ReviewCard({ review }) {
   const { user, course, rating, review: ReviewText } = review;
 
   return (
-    <div className="bg-gradient-to-br from-[#1a1c2b] to-[#1a1c2d] text-white p-6  rounded-[31px_99px_38px_99px]  shadow-2xl border border-[#3a3d5c] w-96 transition-transform transform hover:scale-105 duration-300 min-h-60 h-auto">
+    <div className="bg-gradient-to-br from-[#1a1c2b] to-[#1a1c2d] text-white md:p-6 p-4 md:rounded-[31px_99px_38px_99px] rounded-[31px_89px_38px_89px] shadow-2xl border border-[#3a3d5c] md:w-96 w-[22rem] transition-transform transform hover:scale-105 duration-300 md:min-h-60 min-h-50 h-auto">
       <div className="flex items-start gap-2">
         <img
           src={user?.image}

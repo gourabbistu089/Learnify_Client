@@ -81,14 +81,14 @@ function AllCourses() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.5 }}
           variants={fadeInUp}
-          className="flex items-center justify-between mb-6"
+          className="flex md:items-center md:justify-between mb-6 md:flex-row flex-col-reverse gap-3 "
         >
           {searchQuery && (
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
-              className="bg-[#333333] text-[#FFFFFF] px-4 py-2 rounded-lg shadow-md font-semibold flex items-center gap-2"
+              className="bg-[#333333] w-fit  text-[#FFFFFF] px-4 py-2 rounded-lg shadow-md font-semibold flex items-center gap-2"
             >
               <span className="text-[#39a6b0]">{searchQuery}</span>
               <FaTimes
@@ -102,13 +102,13 @@ function AllCourses() {
             </motion.div>
           )}
           <div className="flex items-center w-full max-w-md bg-[#222222] rounded-lg overflow-hidden ml-auto relative">
-            <FaSearch className="mr-2 absolute left-4 top-1/2 transform -translate-y-1/2 text-[#224b34]" size={22} />
+            <FaSearch className="mr-2 hidden md:block absolute left-4 top-1/2 transform -translate-y-1/2 text-[#224b34]" size={22} />
             <input
               type="text"
               placeholder="Search courses..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="flex-grow p-3 bg-transparent text-[#FFFFFF] placeholder-[#888888] focus:outline-none ml-10"
+              className="flex-grow p-3 bg-transparent text-[#FFFFFF] placeholder-[#888888] focus:outline-none md:ml-10"
             />
             <motion.button
               whileHover={{ scale: 1.05 }}

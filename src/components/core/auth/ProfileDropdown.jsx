@@ -33,7 +33,7 @@ function ProfileDropdown() {
         <>
           <img
             src={user?.image}
-            className="aspect-square w-[38px] md:w-[40px] rounded-full object-cover cursor-pointer border-2 border-purple-400 shadow-lg hover:scale-105 transition-transform"
+            className="aspect-square w-[38px] md:w-[54px] rounded-full object-cover cursor-pointer border-2 border-purple-400 shadow-lg hover:scale-105 transition-transform"
             alt={`profile-${user?.firstName}`}
             onClick={() => setIsOpen((prev) => !prev)}
           />

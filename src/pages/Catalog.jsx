@@ -27,14 +27,14 @@ function Catalog() {
 
   if (!catalogs) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-richblack-800 text-richblue-50">
+      <div className="flex items-center justify-center min-h-screen bg-richblack-800 text-richblue-50 ">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-caribbeangreen-200"></div>
       </div>
     );
   }
 
   return (
-    <div className="bg-richblack-900 text-richblue-50 min-h-screen px-6 md:px-10">
+    <div className="bg-richblack-900 text-richblue-50 min-h-screen px-6 md:px-10 mt-6">
       {/* Breadcrumb */}
       <div className="flex items-center text-sm gap-2 py-4">
         <FaHome className="text-caribbeangreen-300" />
@@ -45,7 +45,7 @@ function Catalog() {
       </div>
 
       {/* Catalog Information */}
-      <div className="py-6">
+      <div className="py-4">
         <h1 className="text-2xl md:text-3xl font-edu-sa mb-2">
           <HighlightText text={catalogs?.selectedCourses[0]?.title}/>
         </h1>
@@ -55,7 +55,7 @@ function Catalog() {
       </div>
 
       {/* Section 1 - Starter Courses */}
-      <div className="my-10">
+      <div className="">
         <div className="text-lg font-inter mb-4 text-caribbeangreen-100">
           Courses to Get You Started
         </div>

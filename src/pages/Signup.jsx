@@ -50,7 +50,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-[#1A202C] via-[#000000] to-[#121418] text-white">
+    <div className="min-h-screen pt-5 md:mt-0 flex items-center justify-center bg-gradient-to-r from-[#1A202C] via-[#000000] to-[#121418] text-white">
       <div className="container max-w-6xl bg-gray-800 p-8 rounded-xl shadow-xl">
         <div className="text-center mb-6 -mt-2 md:-mt-4">
           <h2 className="text-4xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-200">
@@ -87,7 +87,7 @@ const Signup = () => {
             </div>
 
             {/* Signup Form */}
-            <form onSubmit={handleOnSubmit} className="flex flex-col gap-y-4">
+            <form onSubmit={handleOnSubmit} className="flex flex-col gap-y-5">
               <div className="flex gap-x-4">
                 <label className="flex-1">
                   <p className="mb-1 text-sm text-gray-400">
@@ -140,7 +140,7 @@ const Signup = () => {
                 />
               </label>
 
-              <div className="flex gap-x-4 md:flex-row flex-col">
+              <div className="flex gap-x-4 md:flex-row flex-col gap-y-5">
                 <label className="relative flex-1">
                   <p className="mb-1 text-sm text-gray-400 ">
                     Create Password <sup className="text-pink-200">*</sup>

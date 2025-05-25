@@ -85,13 +85,13 @@ const ContactUs = () => {
         initial="hidden"
         animate="visible"
         variants={containerVariants}
-        className="max-w-6xl mx-auto py-20 px-8 grid grid-cols-1 md:grid-cols-3 gap-12"
+        className="max-w-6xl mx-auto py-20 md:px-8 px-6 flex md:flex-row flex-col-reverse justify-evenly gap-12"
       >
         {/* Contact Information */}
         <motion.div variants={itemVariants1}
         transition={{ duration: 0.8 , delay:0.8}}
-        className="space-y-12 relative glow">
-          <div className="moon-effect"></div>
+        className="space-y-12 relative bg-gradient-to-r from-richblue-600/25 px-6 to-richblue-700/15">
+          <div className=""></div>
           <h2 className="text-3xl font-extrabold text-richblack-5">Contact Information</h2>
           <div className="space-y-10">
             {[
@@ -118,7 +118,7 @@ const ContactUs = () => {
         <motion.div variants={itemVariants2}
         transition={{ duration: 0.8 , delay:0.8}}
         className="col-span-2">
-          <div className="bg-gradient-to-br from-richblack-800 to-richblack-900 text-richblack-5 shadow-xl rounded-lg p-8">
+          <div className="bg-gradient-to-br from-richblack-800 to-richblack-900 text-richblack-5 shadow-xl rounded-lg md:p-8 p-4">
             <h2 className="text-4xl font-bold text-center mb-8 text-blue-400">Send Us a Message</h2>
             <form className="space-y-6" onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

@@ -13,7 +13,7 @@ function TestimonialSection() {
   },[])
   // console.log("REVIEWS", reviews)
   return (
-    <div className=' text-white'>
+    <div className=' text-white '>
       <ReviewSlicer Reviews={reviews} />
     </div>
   )

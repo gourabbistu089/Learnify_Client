@@ -99,7 +99,7 @@ const ReviewSlicer = ({ Reviews }) => {
     return <p>No Reviews Found</p>;
   }
   return (
-    <div className="relative px-8 py-8">
+    <div className="relative md:px-8 md:py-8">
       <Swiper
         modules={[Navigation, Pagination, A11y, Autoplay]}
         spaceBetween={30}
