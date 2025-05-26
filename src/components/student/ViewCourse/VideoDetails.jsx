@@ -226,7 +226,7 @@ export default function VideoDetails() {
         </div>
       )}
 
-      <ReviewModal />
+     
     </div>
   );
 }

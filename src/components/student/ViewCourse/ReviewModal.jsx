@@ -6,8 +6,13 @@ import { createRating } from "../../../services/apiCalls/courseCall";
 import { useParams } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
 import { toast } from "react-toastify";
+import { FaX } from "react-icons/fa6";
+import { CircleX } from "lucide-react";
 
-function ReviewModal() {
+function ReviewModal({ course, setReviewModal }) {
+  console.log("course", course);
+  console.log("setReviewModal", setReviewModal);
+  const { _id , title} = course;
   const { user } = useSelector((state) => state.profile);
   const { token } = useSelector((state) => state.auth);
   const {
@@ -17,7 +22,7 @@ function ReviewModal() {
     getValues,
     formState: { errors },
   } = useForm();
-  const { courseId } = useParams();
+  const courseId = _id;
 
   useEffect(() => {
     setValue("courseexperience", "");
@@ -48,12 +53,20 @@ function ReviewModal() {
   };
 
   return (
-    <div className="bg-gradient-to-r from-[#0f172a] to-[#1e293b] p-8 rounded-3xl shadow-2xl max-w-lg mx-auto text-white border border-[#334155]">
+    <div className="bg-gradient-to-r from-[#0f172a] to-[#1e293b] md:p-8 rounded-3xl shadow-2xl md:max-w-lg max-w-md md:mx-auto text-white border border-[#334155] relative  ml-16 p-3">
       <div className="mb-6">
-        <h2 className="text-3xl font-extrabold mb-3 flex items-center gap-2 text-[#facc15]">
+        <h2 className="text-3xl font-extrabold mb-3 flex items-center gap-2 text-[#facc15] ">
           Share Your Experience
         </h2>
-        <p className="text-gray-400">Your feedback helps others make better choices!</p>
+        <CircleX
+          className="absolute right-4 top-4  text-[#fffbfb] cursor-pointer"
+          onClick={() => setReviewModal(false)}
+          size={24}
+        />
+
+        <p className="text-gray-400">
+          Your feedback helps others make better choices!
+        </p>
       </div>
 
       <div className="flex items-center gap-4 mb-8">
@@ -67,17 +80,17 @@ function ReviewModal() {
           <FaUserCircle className="w-14 h-14 text-gray-500" />
         )}
         <div>
-          <p className="font-semibold text-lg">{user?.firstName} {user?.lastName}</p>
+          <p className="font-semibold text-lg">
+            {user?.firstName} {user?.lastName}
+          </p>
           <p className="text-sm text-gray-500">Sharing your thoughts...</p>
         </div>
       </div>
 
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col gap-6"
-      >
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
         <div className="flex flex-col items-center">
           <p className="text-lg mb-2 text-[#facc15]">Rate the Course</p>
+           <p className="text-lg mb-2 italic font-semibold text-[#ab1ab8]">"{title}"</p>
           <ReactStars
             count={5}
             onChange={ratingChange}

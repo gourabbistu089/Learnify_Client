@@ -48,6 +48,7 @@ const CourseSlicer = ({ Courses }) => {
           background-color: rgba(255, 255, 255, 0.); /* Light background */
           box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
           z-index: 10; /* Ensure arrows are above slides */
+          
         }
 
         .swiper-button-next {
