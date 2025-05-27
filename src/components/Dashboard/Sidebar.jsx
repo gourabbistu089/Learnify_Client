@@ -5,6 +5,8 @@ import { FaBook, FaChalkboardTeacher, FaHome, FaUser } from "react-icons/fa";
 import { MdArrowForward, MdDeleteForever, MdOutlineAssignment } from "react-icons/md";
 import { FiSettings, FiShoppingCart, FiMenu, FiX } from "react-icons/fi";
 import { ChevronLeft, CircleChevronLeft, CircleChevronRight } from "lucide-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 
 function Sidebar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -20,7 +22,7 @@ function Sidebar() {
   const studentLinks = [
     { to: "/dashboard/home", label: "Home", icon: <FaHome /> },
     { to: "/dashboard/enrolled-courses", label: "Enrolled Courses", icon: <FaBook /> },
-    { to: "/dashboard/assignments", label: "Assignments", icon: <MdOutlineAssignment /> },
+    { to: "/dashboard/create-blog", label: "Blog", icon: <FontAwesomeIcon icon={faPenToSquare} /> },
     { to: "/dashboard/profile", label: "Profile", icon: <FaUser /> },
     { to: "/dashboard/setting", label: "Setting", icon: <FiSettings /> },
     { to: "/dashboard/cart", label: "Cart", icon: <FiShoppingCart /> },
@@ -31,6 +33,7 @@ function Sidebar() {
     { to: "/dashboard/home", label: "Dashboard", icon: <FaHome /> },
     { to: "/dashboard/my-courses", label: "My Courses", icon: <FaBook /> },
     { to: "/dashboard/add-course", label: "Add Course", icon: <FaChalkboardTeacher /> },
+    { to: "/dashboard/create-blog", label: "Blog", icon: <FontAwesomeIcon icon={faPenToSquare} /> },
     { to: "/dashboard/profile", label: "Profile", icon: <FaUser /> },
     { to: "/dashboard/setting", label: "Setting", icon: <FiSettings /> },
     { to: "/dashboard/delete-account", label: "Delete Account", icon: <MdDeleteForever />, sensitive: true },

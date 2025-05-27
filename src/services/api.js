@@ -47,3 +47,19 @@ export const paymentEndpoints = {
     VERIFY_PAYMENT_API : `${BASE_URL}/payments/verifyPayment`,
     SEND_PAYMENT_SUCCESS_EMAIL_API : `${BASE_URL}/payments/sendPaymentSuccessEmail`,
 }
+
+export const blogEndpoints = {
+    BLOG_CREATE_API : `${BASE_URL}/blogs/create-blog`,
+    BLOG_GET_ALL_API : `${BASE_URL}/blogs/`,
+    BLOG_GET_MY_API : `${BASE_URL}/blogs/my-blogs`,
+    BLOG_GET_SLUG_API : `${BASE_URL}/blogs/slug`,
+    BLOG_API : `${BASE_URL}/blogs`,
+
+
+
+    BLOG_EDIT_API : `${BASE_URL}/blogs/editBlog`,
+    BLOG_DELETE_API : `${BASE_URL}/blogs/deleteBlog`,
+    BLOG_DETAILS_API : `${BASE_URL}/blogs/getBlogDetails`,
+    BLOG_ALL_DETAILS_API : `${BASE_URL}/blogs/getAllBlogs`,
+    BLOG_UPDATE_VIEWS_API : `${BASE_URL}/blogs/updateBlogViews`,
+}

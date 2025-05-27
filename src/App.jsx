@@ -32,6 +32,9 @@ import AllCourses from "./pages/AllCourses.jsx";
 import { useEffect, useState } from "react";
 import { FaArrowUp } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
+import Blogs from "./pages/Blogs.jsx";
+import Blog from "./pages/Blog.jsx";
+import CreateBlog from "./pages/CreateBlog.jsx";
 
 export default function App() {
   const { user } = useSelector((state) => state.auth);
@@ -123,6 +126,21 @@ export default function App() {
           }
         />
 
+        <Route 
+          path="/blogs"
+          element={
+            // <ProtectedRoute>
+              <Blogs />
+            // </ProtectedRoute>
+          }/>
+        <Route 
+          path="/blogs/:slug"
+          element={
+            <ProtectedRoute>
+              <Blog />
+            </ProtectedRoute>
+          }/>
+
         <Route
           element={
             <ProtectedRoute>
@@ -132,6 +150,7 @@ export default function App() {
         >
           <Route path="dashboard/profile" element={<ProfilePage />} />
           <Route path="dashboard/setting" element={<Setting />} />
+          <Route path="dashboard/create-blog" element={<CreateBlog />} />
           {user?.accountType === "instructor" && (
             <>
               <Route path="dashboard/add-course" element={<AddCourse />} />

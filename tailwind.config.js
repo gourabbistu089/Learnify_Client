@@ -25,6 +25,20 @@ module.exports = {
         800: "#161D29",
         900: "#000814",
       },
+      gray: {
+        5: "#F9FAFB",
+        25: "#F3F4F6",
+        50: "#E5E7EB",
+        100: "#D1D5DB",
+        200: "#9CA3AF",
+        300: "#6B7280",
+        400: "#4B5563",
+        500: "#374151",
+        600: "#1F2937",
+        700: "#111827",
+        800: "#0B0F1A",
+        900: "#030712",
+      },
       blue: {
         5: "#EAF5FF",
         25: "#B4DAEC",
@@ -67,7 +81,7 @@ module.exports = {
         800: "#01212A",
         900: "#001B22",
       },
-     
+
       caribbeangreen: {
         5: "#C1FFFD",
         25: "#83F1DE",
@@ -82,7 +96,7 @@ module.exports = {
         800: "#01321F",
         900: "#001B0D",
       },
-    
+
       pink: {
         5: "#FFF1F1",
         25: "#FBC7D1",
@@ -129,7 +143,7 @@ module.exports = {
     extend: {
       maxWidth: {
         maxContent: "1260px",
-        maxContentTab: "650px"
+        maxContentTab: "650px",
       },
     },
   },
