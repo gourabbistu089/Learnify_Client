@@ -64,7 +64,8 @@ function Blog() {
 
     fetchBlogData();
   }, [slug]);
-  console.log("isLiked", isLiked);
+  // console.log("isLiked", isLiked);
+  console.log("blogData", blogData);
   const handleLike = async () => {
     const isLiked = blogData?.likes?.filter((like) => like.user === user?._id);
     // I am already Liked
@@ -332,7 +333,7 @@ function Blog() {
 
         {/* Article Content */}
         <motion.div className="mb-16" variants={itemVariants}>
-          <div className="relative bg-gradient-to-br from-[#1A1A1A]/90 to-[#0F0F0F]/80 backdrop-blur-sm border border-richblack-600/50 rounded-3xl p-8 md:p-12 shadow-2xl ">
+          <div className="relative bg-gradient-to-br from-[#1A1A1A]/90 to-[#0F0F0F]/80 backdrop-blur-sm border border-richblack-600/50 rounded-3xl p-0 md:p-12 shadow-2xl ">
             <div className="relative ">
               <div  className="blog-content dark-theme " dangerouslySetInnerHTML={{ __html: blogData.content }} />
               {/* {} */}

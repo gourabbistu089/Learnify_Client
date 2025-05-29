@@ -102,6 +102,18 @@ body {
   line-height: 24px;
   padding: 0.75rem;
 }
+/* Thin scrollbar with dark thumb */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #1f2937; /* gray-800 */
+}
+::-webkit-scrollbar-thumb {
+  background-color: #6c6b6d9d; /* gray-600 */
+  border-radius: 8px;
+}
+
 /* BlogContent.css */
 /* Modern Gradient Dark Theme for Blog Content */
 /* Professional Dark Theme for Blog Content */
@@ -218,7 +230,7 @@ body {
   border: 1px solid #354052;
   border-radius: 12px;
   margin: 2rem 0;
-  overflow: hidden;
+  /* overflow:scroll; */
   position: relative;
   box-shadow: 
     0 20px 25px -5px rgba(0, 0, 0, 0.4),
@@ -262,7 +274,7 @@ body {
   padding: 0.25rem 1.2rem;
   margin: 0;
   white-space: pre;
-  overflow-x: auto;
+  /* overflow-x: auto; */
   background: transparent;
   border: none;
   display: block;
@@ -467,7 +479,7 @@ body {
   
   .blog-content.dark-theme .ql-code-block {
     font-size: 0.8125rem;
-    padding: 0.875rem 1rem;
+    /* padding: 0.875rem 1rem; */
   }
   
   .blog-content.dark-theme ul,
@@ -477,11 +489,16 @@ body {
 }
 
 @media (max-width: 480px) {
+
   .blog-content.dark-theme {
     padding: 1.25rem;
     border-radius: 8px;
   }
-  
+  .blog-content.dark-theme .ql-code-block-container {
+   overflow-x: scroll;
+   scrollbar-color: #1c232e #0d1117;
+   padding: 4px 0px;
+  }
   .blog-content.dark-theme h1 {
     font-size: 1.75rem;
   }
@@ -491,7 +508,7 @@ body {
   }
   
   .blog-content.dark-theme .ql-code-block {
-    padding: 0.75rem;
+    /* padding: 0.75rem; */
     font-size: 0.8125rem;
   }
   

@@ -59,7 +59,7 @@ function EnrolledCourses() {
   }
   console.log("enrolled courses", enrolledCourses);
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 p-6 md:p-10">
+    <div className="min-h-screen bg-gradient-to-br from-gray-90f0 to-gray-8f00 p-6 md:p-10">
       {/* Header */}
       <div className="mb-8">
         {enrolledCourses && (

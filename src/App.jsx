@@ -35,6 +35,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import Blogs from "./pages/Blogs.jsx";
 import Blog from "./pages/Blog.jsx";
 import CreateBlog from "./pages/CreateBlog.jsx";
+import MyBlogs from "./pages/MyBlogs.jsx";
+import EditBlog from "./pages/EditBlog.jsx";
 
 export default function App() {
   const { user } = useSelector((state) => state.auth);
@@ -140,6 +142,7 @@ export default function App() {
               <Blog />
             </ProtectedRoute>
           }/>
+        
 
         <Route
           element={
@@ -151,6 +154,8 @@ export default function App() {
           <Route path="dashboard/profile" element={<ProfilePage />} />
           <Route path="dashboard/setting" element={<Setting />} />
           <Route path="dashboard/create-blog" element={<CreateBlog />} />
+          <Route path="dashboard/my-blogs" element={<MyBlogs />} />
+          <Route path="dashboard/edit-blog/:slug" element={<EditBlog />} />
           {user?.accountType === "instructor" && (
             <>
               <Route path="dashboard/add-course" element={<AddCourse />} />

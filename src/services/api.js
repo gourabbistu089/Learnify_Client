@@ -55,9 +55,6 @@ export const blogEndpoints = {
     BLOG_GET_SLUG_API : `${BASE_URL}/blogs/slug`,
     BLOG_API : `${BASE_URL}/blogs`,
 
-
-
-    BLOG_EDIT_API : `${BASE_URL}/blogs/editBlog`,
     BLOG_DELETE_API : `${BASE_URL}/blogs/deleteBlog`,
     BLOG_DETAILS_API : `${BASE_URL}/blogs/getBlogDetails`,
     BLOG_ALL_DETAILS_API : `${BASE_URL}/blogs/getAllBlogs`,

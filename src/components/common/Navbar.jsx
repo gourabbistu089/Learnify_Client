@@ -120,7 +120,7 @@ function Navbar() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-richblack-900 border-b border-richblack-700 shadow-lg">
       <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6">
-        <div className="flex justify-between items-center h-14 md:h-[68px]">
+        <div className="flex justify-between items-center h-14 md:h-[60px]">
           {/* Logo */}
           <NavLink 
             to="/" 

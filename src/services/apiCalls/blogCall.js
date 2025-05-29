@@ -18,7 +18,7 @@ export const getAllBlogs = async () => {
 
     if (response.status === 200) {
       console.log("getAllBlogs Successfully");
-      console.log(response);
+      // console.log(response);
       return response?.data?.data;
     } else {
       console.log("Error in getAllBlogs");
@@ -48,7 +48,7 @@ export const getBlogBySlug = async (slug) => {
 
     if (response.status === 200) {
       console.log("getBlogBySlug Successfully");
-      console.log(response);
+      // console.log(response);
       return response?.data?.data;
     } else {
       console.log("Error in getBlogBySlug");
@@ -76,8 +76,9 @@ export const toggleLike = async (id) => {
       { Authorization: `Bearer ${token}` }
     );
     if (response.status === 200) {
-      console.log("toggleLike Successfully");
-    //   console.log(response);
+      // console.log("toggleLike Successfully");
+      // console.log(response);
+      // toast.success(response?.data?.message);
       return response?.data?.data;
     } else {
       console.log("Error in toggleLike");
@@ -106,8 +107,9 @@ export const addComment = async (id, content) => {
     );
     console.log("addComment", response);
     if (response.status === 201) {
-      console.log("addComment Successfully");
-      console.log(response);
+      // console.log("addComment Successfully");
+      // console.log(response);
+      toast.success("New comment added");
       return response?.data?.data;
     } else {
       console.log("Error in addComment");
@@ -135,7 +137,8 @@ export const createBlog = async (form) => {
     console.log("createBlog", response);
     if (response.status === 201) {
       console.log("createBlog Successfully");
-      console.log(response);
+      // console.log(response);
+      toast.success("Blog created successfully");
       return response?.data?.data;
     } else {
       console.log("Error in createBlog");
@@ -146,3 +149,95 @@ export const createBlog = async (form) => {
     toast.error("Error in createBlog");
   }
 };
+
+export const getMyBlogsAPI = async () => {
+  const token = localStorage.getItem("token");
+  if (!token) {
+    toast.error("User not authenticated. Please log in again.");
+    return;
+  }
+  try {
+    const response = await apiConnector(
+      "GET",
+      blogEndpoints.BLOG_GET_MY_API,
+      null,
+      { Authorization: `Bearer ${token}` }
+    );
+    console.log("myBlogs", response);
+    if (response.status === 200) {
+      console.log("myBlogs Successfully");
+      console.log(response);
+      return response?.data?.data;
+    } else {
+      console.log("Error in myBlogs");
+      toast.error("Error in myBlogs");
+    }
+  } catch (error) {
+    console.log("Error in myBlogs");
+    toast.error("Error in myBlogs");
+  }
+};
+
+export const updateBlog = async (id, form) => {
+  
+  const token = localStorage.getItem("token");
+  if (!token) {
+    toast.error("User not authenticated. Please log in again.");
+    return;
+  }
+  let url = `${blogEndpoints.BLOG_API}/${id}`;
+  console.log("url", url);
+  try {
+    const response = await apiConnector(
+      "PUT",
+      url,
+      form,
+      { Authorization: `Bearer ${token}` }
+    );
+    console.log("updateBlog", response);
+    if (response.status === 200) {
+      console.log("updateBlog Successfully");
+      console.log(response);
+      toast.success("Blog updated successfully");
+      return response?.data?.data;
+    } else {
+      
+      console.log("Error in updateBlog", response);
+      toast.error("Error in updateBlog");
+    }
+  } catch (error) {
+    console.error(error);
+    toast.error("Error in updateBlog");
+  }
+}
+
+export const deleteBlogAPI = async (id) => {
+  const token = localStorage.getItem("token");
+  if (!token) {
+    toast.error("User not authenticated. Please log in again.");
+    return;
+  }
+  let url = `${blogEndpoints.BLOG_API}/${id}`;
+  console.log("url", url);
+  try {
+    const response = await apiConnector(
+      "DELETE",
+      url,
+      null,
+      { Authorization: `Bearer ${token}` }
+    );
+    console.log("deleteBlogAPI", response);
+    if (response.status === 200) {
+      console.log("deleteBlogAPI Successfully");
+      console.log(response);
+      toast.success("Blog deleted successfully");
+      return response?.data?.data;
+    } else {
+      console.log("Error in deleteBlogAPI", response);
+      toast.error("Error in deleteBlogAPI");    
+    }
+  } catch (error) {
+    console.error(error);
+    toast.error("Error in deleteBlogAPI");  
+  }
+}

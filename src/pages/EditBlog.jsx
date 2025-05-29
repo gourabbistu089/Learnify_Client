@@ -1,4 +1,5 @@
-import React, { useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { FaGlobe } from "react-icons/fa6";
 import { Editor } from "primereact/editor";
 import {
@@ -15,20 +16,14 @@ import {
   Zap,
   BookOpen,
 } from "lucide-react";
-import { createBlog } from "../services/apiCalls/blogCall";
+import { createBlog, getBlogBySlug, updateBlog } from "../services/apiCalls/blogCall";
 
-function CreateBlog() {
-  const [formData, setFormData] = useState({
-    title: "",
-    content: "",
-    excerpt: "",
-    category: "Technology",
-    tags: [],
-    status: "draft",
-    featuredImage: null,
-    relatedCourses: [],
-  });
+function EditBlog() {
+  const navigate = useNavigate();
+  const { slug } = useParams();
 
+  const [editBlog, setEditBlog] = useState({});
+  const [loading, setLoading] = useState(false);
   const [newTag, setNewTag] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -37,6 +32,49 @@ function CreateBlog() {
   const [readingTime, setReadingTime] = useState(0);
 
   const fileInputRef = useRef(null);
+
+  const [formData, setFormData] = useState({
+    title: "",
+    content: "",
+    excerpt: "",
+    category: "",
+    tags: [],
+    status: "",
+    featuredImage: "",
+    relatedCourses: "",
+  });
+
+  useEffect(() => {
+    const fetchBlogData = async () => {
+      try {
+        setLoading(true);
+        const data = await getBlogBySlug(slug);
+        setFormData({
+          title: data?.title || "",
+          content: data?.content || "",
+          excerpt: data?.excerpt || "",
+          category: data?.category || "",
+          tags: data?.tags || "",
+          status: data?.status || "",
+          featuredImage: data?.featuredImage || "",
+          relatedCourses: data?.relatedCourses || "",
+        });
+        if(data?.featuredImage){
+          setImagePreview(data?.featuredImage);
+        }
+        setEditBlog(data);
+      } catch (error) {
+        console.error("Error fetching blog data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBlogData();
+  }, []);
+
+  // console.log("formData", formData);
+
 
   const categories = [
     "Technology",
@@ -134,11 +172,13 @@ function CreateBlog() {
       }
     }
   };
-
   console.log("imagePreview", imagePreview);
 
   const addTag = () => {
-    if (newTag.trim() && !formData.tags.includes(newTag.trim().toLowerCase())) {
+    if (
+      newTag.trim() &&
+      !formData?.tags.includes(newTag.trim().toLowerCase())
+    ) {
       setFormData((prev) => ({
         ...prev,
         tags: [...prev.tags, newTag.trim().toLowerCase()],
@@ -157,25 +197,25 @@ function CreateBlog() {
   const validateForm = () => {
     const newErrors = {};
 
-    if (!formData.title.trim()) {
+    if (!formData?.title.trim()) {
       newErrors.title = "Title is required";
-    } else if (formData.title.length > 200) {
+    } else if (formData?.title.length > 200) {
       newErrors.title = "Title must be less than 200 characters";
     }
 
     if (
-      !formData.content.trim() ||
-      formData.content === "<p><br></p>" ||
-      formData.content === "<p></p>"
+      !formData?.content.trim() ||
+      formData?.content === "<p><br></p>" ||
+      formData?.content === "<p></p>"
     ) {
       newErrors.content = "Content is required";
     }
 
-    if (formData.excerpt && formData.excerpt.length > 300) {
+    if (formData?.excerpt && formData?.excerpt.length > 300) {
       newErrors.excerpt = "Excerpt must be less than 300 characters";
     }
 
-    if (!formData.featuredImage) {
+    if (!formData?.featuredImage) {
       newErrors.featuredImage = "Featured image is required";
     }
 
@@ -191,16 +231,22 @@ function CreateBlog() {
     setIsLoading(true);
     try {
       const submitData = new FormData();
-      submitData.append("title", formData.title);
-      submitData.append("content", formData.content);
-      submitData.append("excerpt", formData.excerpt);
-      submitData.append("category", formData.category);
+      submitData.append("title", formData?.title);
+      submitData.append("content", formData?.content);
+      submitData.append("excerpt", formData?.excerpt);
+      submitData.append("category", formData?.category);
       submitData.append("tags", JSON.stringify(formData.tags));
-      submitData.append("status", formData.status);
-      submitData.append("image", formData.featuredImage);
+      submitData.append("status", formData?.status);
+      submitData.append("image", formData?.featuredImage);
+
+      // print submitData using for in loop
+      // console.log("submitData", );
+      // for (const [key, value] of submitData.entries()) {
+      //   console.log(key, value);
+      // }
 
       // Here you would make the API call to create the blog
-      const response = await createBlog(submitData);
+      const response = await updateBlog(editBlog?._id,submitData);
       // Reset form or redirect
       setFormData({
         title: "",
@@ -211,7 +257,7 @@ function CreateBlog() {
         status: "",
         featuredImage: null,
       });
-      // navigate('/blogs');
+      navigate(`/blogs/${response.slug}`);
     } catch (error) {
       console.error("Error creating blog:", error);
     } finally {
@@ -369,7 +415,28 @@ function CreateBlog() {
       <button className="ql-clean" aria-label="Remove Styles"></button>
     </span>
   );
-
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-[#0A0A0A] flex items-center justify-center">
+        <div className="relative">
+          <div className="w-20 h-20 border-4 border-transparent border-t-[#6366F1] border-r-[#8B5CF6] rounded-full animate-spin"></div>
+          <div
+            className="absolute inset-2 w-16 h-16 border-4 border-transparent border-t-[#EC4899] border-l-[#10B981] rounded-full animate-spin"
+            style={{ animationDirection: "reverse", animationDuration: "1.2s" }}
+          ></div>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <BookOpen className="w-8 h-8 text-[#6366F1] animate-pulse" />
+          </div>
+        </div>
+        <div className="ml-6">
+          <h2 className="text-2xl font-bold text-white mb-1">
+            Loading Article
+          </h2>
+          <p className="text-gray-400">Preparing your reading experience...</p>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="min-h-screen bg-[#0A0A0A] text-white relative">
       {/* Animated Background */}
@@ -408,7 +475,7 @@ function CreateBlog() {
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#1A1A1A] border border-[#6366F1]/20 rounded-full">
               <Zap className="w-4 h-4 text-[#6366F1]" />
               <span className="text-sm font-medium text-gray-300">
-                Create Story
+                Edit Story
               </span>
               <div className="w-2 h-2 bg-[#10B981] rounded-full animate-pulse"></div>
             </div>
@@ -418,9 +485,9 @@ function CreateBlog() {
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-black mb-4 leading-tight">
               <span className="bg-gradient-to-r from-[#6366F1] via-[#8B5CF6] to-[#EC4899] bg-clip-text text-transparent">
-                Create
+                Update
               </span>{" "}
-              <span className="text-white">Amazing</span>
+              <span className="text-white">Existing </span>
               <br />
               <span className="bg-gradient-to-r from-[#10B981] to-[#6366F1] bg-clip-text text-transparent">
                 Content
@@ -537,7 +604,7 @@ function CreateBlog() {
                 <input
                   type="text"
                   name="title"
-                  value={formData.title}
+                  value={formData?.title}
                   onChange={handleInputChange}
                   placeholder="Enter an engaging title for your article..."
                   className="w-full px-4 py-3 bg-[#0A0A0A] border border-richblack-500 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-[#6366F1] transition-colors"
@@ -547,7 +614,7 @@ function CreateBlog() {
                     <p className="text-pink-400 text-sm">{errors.title}</p>
                   )}
                   <p className="text-gray-500 text-xs text-right ml-auto">
-                    {formData.title.length}/200 characters
+                    {formData?.title?.length}/200 characters
                   </p>
                 </div>
               </div>
@@ -562,7 +629,7 @@ function CreateBlog() {
                   <div className="relative">
                     <select
                       name="category"
-                      value={formData.category}
+                      value={formData?.category}
                       onChange={handleInputChange}
                       className="w-full px-4 py-3 bg-[#0A0A0A] border border-richblack-500 rounded-xl text-white focus:outline-none focus:border-[#6366F1] transition-colors appearance-none cursor-pointer"
                     >
@@ -588,7 +655,7 @@ function CreateBlog() {
                   <div className="relative">
                     <select
                       name="status"
-                      value={formData.status}
+                      value={formData?.status}
                       onChange={handleInputChange}
                       className="w-full px-4 py-3 bg-[#0A0A0A] border border-richblack-500 rounded-xl text-white focus:outline-none focus:border-[#6366F1] transition-colors appearance-none cursor-pointer"
                     >
@@ -611,7 +678,7 @@ function CreateBlog() {
                 </label>
                 <textarea
                   name="excerpt"
-                  value={formData.excerpt}
+                  value={formData?.excerpt}
                   onChange={handleInputChange}
                   placeholder="Write a brief summary of your article..."
                   rows={3}
@@ -622,7 +689,7 @@ function CreateBlog() {
                     <p className="text-pink-400 text-sm">{errors.excerpt}</p>
                   )}
                   <p className="text-gray-500 text-xs text-right ml-auto">
-                    {formData.excerpt.length}/300 characters
+                    {formData?.excerpt?.length}/300 characters
                   </p>
                 </div>
               </div>
@@ -644,7 +711,7 @@ function CreateBlog() {
             </div>
 
             <div className="flex flex-wrap gap-2 mb-4">
-              {formData.tags.map((tag, index) => {
+              {formData?.tags?.map((tag, index) => {
                 const tagColors = [
                   "from-[#6366F1]/20 to-[#8B5CF6]/10 border-[#6366F1]/30 text-[#A5B4FC]",
                   "from-[#EC4899]/20 to-[#F472B6]/10 border-[#EC4899]/30 text-[#FBCFE8]",
@@ -723,7 +790,7 @@ function CreateBlog() {
 
             <div className="editor-container">
               <Editor
-                value={formData.content}
+                value={formData?.content}
                 onTextChange={handleEditorChange}
                 headerTemplate={editorHeader}
                 style={{
@@ -764,12 +831,12 @@ function CreateBlog() {
               {isLoading ? (
                 <>
                   <div className="w-5 h-5 border-2 border-white/20 border-t-white rounded-full animate-spin"></div>
-                  Publishing...
+                  Updating...
                 </>
               ) : (
                 <>
                   <Send className="w-5 h-5" />
-                  Publish Article
+                  Update Article
                 </>
               )}
             </button>
@@ -823,10 +890,10 @@ function CreateBlog() {
         }
 
         /* PrimeReact Editor Dark Theme Styling */
-        .editor-container  {
+        .editor-container .p-editor {
           background-color: #0a0a0a !important;
           border: 1px solid #374151 !important;
-          // border-radius: 12px !important;
+          border-radius: 12px !important;
           overflow: hidden;
         }
 
@@ -1063,4 +1130,5 @@ function CreateBlog() {
     </div>
   );
 }
-export default CreateBlog;
+
+export default EditBlog;

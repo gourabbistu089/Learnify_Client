@@ -14,7 +14,7 @@ function Dashboard() {
   }
 
   return (
-    <div className="w-screen text-white bg-richblack-900 flex font-inter relative min-h-[calc(100vh-3.5rem)]">
+    <div className="w-screen text-white bg-richblack-900 flex font-inter relative min-h-[calc(100vh-3.5rem)] ">
       <Sidebar />
       <div className="h-[calc(100vh-3.5rem)] overflow-auto flex-grow">
         <div className="ml-[3.0rem] md:ml-0">

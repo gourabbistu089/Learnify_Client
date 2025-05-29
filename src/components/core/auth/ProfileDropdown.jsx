@@ -33,7 +33,7 @@ function ProfileDropdown() {
         <>
           <img
             src={user?.image}
-            className="aspect-square w-[38px] md:w-[54px] rounded-full object-cover cursor-pointer border-2 border-purple-400 shadow-lg hover:scale-105 transition-transform"
+            className="aspect-square w-[38px] md:w-[50px] rounded-full object-cover cursor-pointer border-2 border-purple-400 shadow-lg hover:scale-105 transition-transform"
             alt={`profile-${user?.firstName}`}
             onClick={() => setIsOpen((prev) => !prev)}
           />
@@ -41,7 +41,7 @@ function ProfileDropdown() {
           {isOpen && (
             <div
               ref={dropdownRef}
-              className="absolute -right-[175%] md:left-[40%] top-12  bg-gray-800 text-white rounded-lg shadow-xl border border-gray-600 z-50 transform scale-100 duration-200 
+              className="absolute -right-[175%] md:left-[40%] top-12 text-white rounded-lg shadow-xl border border-gray-600 z-50 transform scale-100 duration-200 
            
               bg-richblack-800 -translate-x-1"
             >
@@ -49,18 +49,18 @@ function ProfileDropdown() {
              
                 {/* Menu Options */}
                 <button
-                  className="flex items-center gap-2 px-4 py-2 hover:bg-brown-700 transition-all text-sm font-medium"
+                  className="flex items-center gap-1 px-3 py-2 hover:bg-brown-700 transition-all text-sm font-medium"
                   onClick={() => navigate("/dashboard/home")}
                 >
-                  <MdDashboard size={20} className="text-purple-300" />
-                  Dashboard
+                  <MdDashboard size={20} className="text-[#f4b8ec]" />
+                 <span className=" text-sm">Dashboard</span>
                 </button>
 
                 <button
                   className="flex items-center gap-2 px-4 py-2 hover:bg-brown-700 transition-all text-sm font-medium"
                   onClick={handleLogout}
                 >
-                  <FiLogOut size={20} className="text-red-300" />
+                  <FiLogOut size={20} className="text-[#ff8888]" />
                   Logout
                 </button>
               </div>
