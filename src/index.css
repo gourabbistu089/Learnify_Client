@@ -124,7 +124,7 @@ body {
   /* padding: 2.5rem; */
   line-height: 1.75;
   border-radius: 16px;
-  max-width: 900px;
+  /* max-width: 900px; */
   margin: 2rem auto;
   /* border: 1px solid rgba(255, 255, 255, 0.2); */
   /* box-shadow: 
@@ -145,7 +145,7 @@ body {
   margin: 0 0 2.5rem 0;
   letter-spacing: -0.025em;
   line-height: 1.2;
-  text-align: center;
+  /* text-align: center; */
 }
 
 .blog-content.dark-theme h2 {
@@ -229,16 +229,20 @@ body {
   background: linear-gradient(145deg, #070e1b 100%, #131823 100%);
   border: 1px solid #354052;
   border-radius: 12px;
-  margin: 2rem 0;
+  margin: 2rem 2rem;
   /* overflow:scroll; */
   position: relative;
   box-shadow: 
     0 20px 25px -5px rgba(0, 0, 0, 0.4),
-    0 10px 10px -5px rgba(0, 0, 0, 0.04),
+    0 10px 10px -5px rgba(224, 45, 45, 0.04),
     inset 0 1px 0 rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(12px);
   transition: all 0.3s ease;
-  max-width: 700px;
+  /* max-width: 700px; */
+  /* overflow-x: scroll; */
+  overflow-x: auto;
+  scrollbar-color: #252b36 #4d535c;
+  /* scrollbar-width: thin; */
 }
 
 .blog-content.dark-theme .ql-code-block-container:hover {
@@ -263,6 +267,20 @@ body {
     radial-gradient(circle at 60px 20px, #28ca42 6px, transparent 6px);
   background-repeat: no-repeat;
   /* background-position: 20px 20px, 40px 20px, 60px 20px; */
+}
+ .blog-content.dark-theme .ql-code-block-container > button {
+       position: absolute;
+        top: 4px;
+        right: 10px;
+        padding: 4px 8px;
+        font-size: 12px;
+        background: #323c4e;
+        color: #fff;
+        border: none;
+        outline: none;
+        border-radius: 8px;
+        cursor: pointer;
+        z-index: 10;
 }
 
 /* Individual code lines */
@@ -481,6 +499,10 @@ body {
     font-size: 0.8125rem;
     /* padding: 0.875rem 1rem; */
   }
+
+   .blog-content.dark-theme .ql-code-block-container > button {
+        top: 6px;
+}
   
   .blog-content.dark-theme ul,
   .blog-content.dark-theme ol {
@@ -495,8 +517,7 @@ body {
     border-radius: 8px;
   }
   .blog-content.dark-theme .ql-code-block-container {
-   overflow-x: scroll;
-   scrollbar-color: #1c232e #0d1117;
+   margin: 0 0;
    padding: 4px 0px;
   }
   .blog-content.dark-theme h1 {

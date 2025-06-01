@@ -82,7 +82,7 @@ function Blogs() {
     setSearchTerm("");
   };
 
-  if (loading) {
+  if (loading || blogs.length === 0) {
     return (
       <div className="min-h-screen bg-[#0A0A0A] flex items-center justify-center">
         <div className="relative">

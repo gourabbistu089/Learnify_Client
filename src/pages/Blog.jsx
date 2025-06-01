@@ -64,6 +64,38 @@ function Blog() {
 
     fetchBlogData();
   }, [slug]);
+
+   useEffect(() => {
+    const containers = document.querySelectorAll(".ql-code-block-container");
+
+    containers.forEach((container) => {
+
+      const button = document.createElement("button");
+      button.innerText = "Copy";
+      button.className = "copy-btn";
+        // Add click event listener
+         button.addEventListener("click", () => {
+        const codeLines = Array.from(
+          container.querySelectorAll(".ql-code-block")
+        ).map((div) => div.innerText);
+
+        const code = codeLines.join("\n");
+
+        if (code.trim()) {
+          navigator.clipboard.writeText(code);
+          button.innerText = "Copied!";
+          setTimeout(() => (button.innerText = "Copy"), 2000);
+        }
+      });
+
+      // Ensure container is positioned for absolute button placement
+      container.style.position = "relative";
+      container.appendChild(button);
+
+    });
+  }, [blogData]);
+
+
   // console.log("isLiked", isLiked);
   console.log("blogData", blogData);
   const handleLike = async () => {
@@ -159,19 +191,19 @@ function Blog() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#0A0A0A] flex items-center justify-center">
+      <div className="min-h-screen bg-[#0A0A0A] flex flex-col md:flex-row items-center justify-center">
         <div className="relative">
-          <div className="w-20 h-20 border-4 border-transparent border-t-[#6366F1] border-r-[#8B5CF6] rounded-full animate-spin"></div>
+          <div className="w-20 h-20 border-4 border-transparent border-t-[#6366F1]/80 border-r-[#8B5CF6]/85 rounded-full animate-spin"></div>
           <div
-            className="absolute inset-2 w-16 h-16 border-4 border-transparent border-t-[#EC4899] border-l-[#10B981] rounded-full animate-spin"
+            className="absolute inset-2 w-16 h-16 border-4 border-transparent border-t-[#EC4899]/85 border-l-[#10B981]/80 rounded-full animate-spin"
             style={{ animationDirection: "reverse", animationDuration: "1.2s" }}
           ></div>
           <div className="absolute inset-0 flex items-center justify-center">
             <BookOpen className="w-8 h-8 text-[#6366F1] animate-pulse" />
           </div>
         </div>
-        <div className="ml-6">
-          <h2 className="text-2xl font-bold text-white mb-1">
+        <div className="ml-6 hidden md:block">
+          <h2 className="text-2xl font-bold text-white mb-1 ">
             Loading Article
           </h2>
           <p className="text-gray-400">Preparing your reading experience...</p>
@@ -212,7 +244,7 @@ function Blog() {
 
       {/* Main Content */}
       <motion.div
-        className="max-w-4xl mx-auto px-6 pt-16 pb-12 relative z-10"
+        className="max-w-6xl mx-auto px-6 pt-16 pb-12 relative z-10"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -258,7 +290,7 @@ function Blog() {
             className="text-4xl md:text-6xl font-black mb-8 leading-tight"
             variants={itemVariants}
           >
-            <span className="bg-gradient-to-r from-[#6366F1] via-[#8B5CF6] to-[#EC4899] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#6366F1]/80 via-[#8B5CF6]/85 to-[#EC4899]/80 bg-clip-text text-transparent">
               {blogData.title}
             </span>
           </motion.h1>
@@ -305,7 +337,7 @@ function Blog() {
               <img
                 src={blogData.featuredImage}
                 alt={blogData.title}
-                className="w-full h-72 md:h-96 object-cover"
+                className="w-full h-80 md:h-[484px] object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
 
