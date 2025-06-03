@@ -37,6 +37,8 @@ import Blog from "./pages/Blog.jsx";
 import CreateBlog from "./pages/CreateBlog.jsx";
 import MyBlogs from "./pages/MyBlogs.jsx";
 import EditBlog from "./pages/EditBlog.jsx";
+import Creator from "./pages/Creator.jsx";
+import UserProfile from "./components/UserProfile.jsx";
 
 export default function App() {
   const { user } = useSelector((state) => state.auth);
@@ -140,6 +142,15 @@ export default function App() {
           element={
             <ProtectedRoute>
               <Blog />
+            </ProtectedRoute>
+          }/>
+        <Route 
+          path="/creator/:id"
+          element={
+            <ProtectedRoute>
+              <UserProfile>
+              <Creator />
+              </UserProfile>
             </ProtectedRoute>
           }/>
         

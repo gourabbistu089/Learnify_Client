@@ -2,16 +2,17 @@ import { apiConnector } from "../apiConnector";
 import { blogEndpoints } from "../api";
 import { toast } from "react-toastify";
 
-export const getAllBlogs = async () => {
+export const getAllBlogs = async (page, limit) => {
   const token = localStorage.getItem("token");
   // if (!token) {
   //   toast.error("User not authenticated. Please log in again.");
   //   return;
   // }
+  let url = `${blogEndpoints.BLOG_GET_ALL_API}?page=${page}&limit=${limit}`;
   try {
     const response = await apiConnector(
       "GET",
-      blogEndpoints.BLOG_GET_ALL_API,
+      url,
       null,
     //   { Authorization: `Bearer ${token}` }
     );
@@ -27,6 +28,34 @@ export const getAllBlogs = async () => {
   } catch (error) {
     console.error(error);
     toast.error("Error in getAllBlogs");
+  }
+};
+export const getAllFollowingsBlogs = async (page) => {
+  const token = localStorage.getItem("token");
+  if (!token) {
+    toast.error("User not authenticated. Please log in again.");
+    return;
+  }
+  let url = `${blogEndpoints.BLOG_GET_FOLLOWING_API}?page=${page}`;
+  try {
+    const response = await apiConnector(
+      "GET",
+      url,
+      null,
+      { Authorization: `Bearer ${token}` }
+    );
+
+    if (response.status === 200) {
+      console.log("Get all followings blogs Successfully");
+      // console.log(response);
+      return response?.data?.data;
+    } else {
+      console.log("Error in get all followings blogs");
+      toast.error("Error in get blogs");
+    }
+  } catch (error) {
+    console.error(error);
+    toast.error("Error in get all followings blogs");
   }
 };
 

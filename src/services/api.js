@@ -16,12 +16,15 @@ export const authEndpoints = {
 
 export const profileEndpoints = {
     UPDATE_PROFILE:`${BASE_URL}/profile/updateProfile`,
+    GET_PROFILE:`${BASE_URL}/profile/getUserDetails`,
     UPDATE_DISPLAY_PICTURE:`${BASE_URL}/profile/updateDisplayPicture`,
     GET_ENROLLED_COURSES:`${BASE_URL}/profile/getEnrolledCourses`,
     LECTURE_COMPLETE_API : `${BASE_URL}/profile/updateUserCourseProgress`,
     GET_INSTRUCTOR_DASHBOARD : `${BASE_URL}/profile/getInstructorDashboard`,
     GET_STUDENT_DASHBOARD : `${BASE_URL}/profile/getStudentDashboard`,
     SENT_MESSAGE : `${BASE_URL}/profile/sentMessage`,
+    TOGGLE_FOLLOW : `${BASE_URL}/profile/toggleFollow`,
+    GET_CREATOR_DETAILS : `${BASE_URL}/profile/get-creator-details`,
 }
 export const courseEndpoints = {
     COURSE_CATEGORIES_API : `${BASE_URL}/courses/showAllCategories`,
@@ -51,6 +54,8 @@ export const paymentEndpoints = {
 export const blogEndpoints = {
     BLOG_CREATE_API : `${BASE_URL}/blogs/create-blog`,
     BLOG_GET_ALL_API : `${BASE_URL}/blogs/`,
+    BLOG_GET_FOLLOWING_API : `${BASE_URL}/blogs/get-following-blogs`,
+
     BLOG_GET_MY_API : `${BASE_URL}/blogs/my-blogs`,
     BLOG_GET_SLUG_API : `${BASE_URL}/blogs/slug`,
     BLOG_API : `${BASE_URL}/blogs`,

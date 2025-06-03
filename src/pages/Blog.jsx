@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import {
   getBlogBySlug,
   toggleLike,
@@ -303,11 +303,13 @@ function Blog() {
             <div className="flex items-center gap-4">
               <div className="relative">
                 <div className="w-16 h-16 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">
+                  <Link to={`/creator/${blogData.author?._id}`}>
                   <img
                     className="w-full h-full object-cover rounded-full"
                     src={blogData.author?.image}
                     alt={blogData.author?.firstName}
                   />
+                  </Link>
                 </div>
                 {/* <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-[#10B981] rounded-full border-2 border-[#0A0A0A]"></div> */}
               </div>
