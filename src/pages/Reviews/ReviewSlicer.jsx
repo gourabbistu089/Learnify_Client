@@ -99,10 +99,10 @@ const ReviewSlicer = ({ Reviews }) => {
     return <p>No Reviews Found</p>;
   }
   return (
-    <div className="relative md:px-8 md:py-8">
+    <div className="relative md:px-8 md:py-8 ">
       <Swiper
         modules={[Navigation, Pagination, A11y, Autoplay]}
-        spaceBetween={30}
+        spaceBetween={2}
         slidesPerView={1}
         navigation
         // pagination={{ clickable: true }}
@@ -111,6 +111,7 @@ const ReviewSlicer = ({ Reviews }) => {
           640: { slidesPerView: 1 },
           768: { slidesPerView: 2 },
           1024: { slidesPerView: 3 },
+          
         }}
         className="mySwiper"
       >
@@ -164,6 +165,12 @@ const ReviewSlicer = ({ Reviews }) => {
           transform: scale(1.3); /* Make active bullet larger */
           border-color: black; /* Change border color for active bullet */
         }
+          @media (max-width: 768px) {
+            .swiper-button-next,
+            .swiper-button-prev {
+              display: none;
+            }
+          }
       `}</style>
     </div>
   );

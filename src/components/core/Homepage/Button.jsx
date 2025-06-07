@@ -4,7 +4,11 @@ import { Link } from 'react-router-dom'
 function Button({children , active, linkTo}) {
   return (
     <Link to={linkTo}>
-        <div className={` px-6 py-3  rounded-md text-[14px] md:text-[13px] font-bold ${active ? "bg-yellow-50 text-richblack-900" : "bg-richblack-800 text-white"} hover:scale-95 transition-all duration-200 `}>
+        <div className={`px-8 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 ${
+      active
+        ? 'bg-gradient-to-r from-cyan-500 to-purple-600 text-white shadow-lg hover:shadow-cyan-500/25'
+        : 'bg-transparent border-2 border-gray-600 text-gray-300 hover:border-cyan-400 hover:text-cyan-400'
+    }`}>
             {children}
         </div>
     </Link>
@@ -12,3 +16,10 @@ function Button({children , active, linkTo}) {
 }
 
 export default Button
+/*
+ className={`px-8 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 ${
+      active
+        ? 'bg-gradient-to-r from-cyan-500 to-purple-600 text-white shadow-lg hover:shadow-cyan-500/25'
+        : 'bg-transparent border-2 border-gray-600 text-gray-300 hover:border-cyan-400 hover:text-cyan-400'
+    }`}
+    */

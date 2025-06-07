@@ -104,7 +104,7 @@ const ContactUs = () => {
                 variants={itemVariants1}
                 className="flex items-center space-x-4 hover:bg-richblack-800 p-6 rounded-lg transition"
               >
-                <div className="p-4 bg-teal-400 text-blue-400 rounded-full text-3xl">{item.icon}</div>
+                <div className="p-4 bg-teal-4f00 text-blue-400 rounded-full text-3xl">{item.icon}</div>
                 <div>
                   <h3 className="text-xl font-semibold">{item.title}</h3>
                   <p>{item.details}</p>
@@ -128,7 +128,7 @@ const ContactUs = () => {
                   value={formData.name}
                   onChange={handleChange}
                   placeholder="Your Name"
-                  className="w-full p-4 border border-richblack-700 bg-richblack-900 text-richblack-5 placeholder-richblack-25 focus:ring-2 focus:ring-teal-400 rounded-md"
+                  className="w-full p-4 border border-richblack-700 bg-richblack-900 text-richblack-5 placeholder-richblack-25 focus:ring-2 focus:ring-teal-40d0 rounded-md"
                 />
                 <input
                   type="email"
@@ -136,7 +136,7 @@ const ContactUs = () => {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="Your Email"
-                  className="w-full p-4 border border-richblack-700 bg-richblack-900 text-richblack-5 placeholder-richblack-25 focus:ring-2 focus:ring-teal-400 rounded-md"
+                  className="w-full p-4 border border-richblack-700 bg-richblack-900 text-richblack-5 placeholder-richblack-25 focus:ring-2 focus:ring-teal-900 rounded-md"
                 />
               </div>
               <input
@@ -145,7 +145,7 @@ const ContactUs = () => {
                 value={formData.mobile}
                 onChange={handleChange}
                 placeholder="Mobile No."
-                className="w-full p-4 border border-richblack-700 bg-richblack-900 text-richblack-5 placeholder-richblack-25 focus:ring-2 focus:ring-teal-400 rounded-md"
+                className="w-full p-4 border border-richblack-700 bg-richblack-900 text-richblack-5 placeholder-richblack-25 focus:ring-2 focus:ring-teal-900 rounded-md"
               />
               <textarea
                 rows="6"
@@ -153,11 +153,11 @@ const ContactUs = () => {
                 value={formData.message}
                 onChange={handleChange}
                 placeholder="Your Message"
-                className="w-full p-4 border border-richblack-700 bg-richblack-900 text-richblack-5 placeholder-richblack-25 focus:ring-2 focus:ring-teal-400 rounded-md"
+                className="w-full p-4 border border-richblack-700 bg-richblack-900 text-richblack-5 placeholder-richblack-25 focus:ring-2 focus:ring-teal-900 rounded-md"
               ></textarea>
               <button
                 type="submit"
-                className="w-full py-4 bg-teal-400 text-richblack-5 font-semibold bg-blue-200 rounded-md shadow-lg hover:bg-blue-300 transition"
+                className="w-full py-4  text-richblack-5 font-semibold bg-blue-200 rounded-md shadow-lg hover:bg-blue-300 transition"
               >
                 {loading ? "Sending..." : "Send Message"}
               </button>

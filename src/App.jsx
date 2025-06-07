@@ -67,7 +67,7 @@ export default function App() {
 
   return (
     <div className=" w-screen min-h-screen bg-richblack-900 flex flex-col font-inter ">
-     <ToastContainer
+      <ToastContainer
         theme="dark" // 👈 sets the dark background
         position="top-right" // or 'bottom-right', etc.
         autoClose={3000}
@@ -78,9 +78,9 @@ export default function App() {
         draggable
         pauseOnHover
       />
-     <div className="mb-12">
-       <Navbar />
-     </div>
+      <div className="mb-12">
+        <Navbar />
+      </div>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -130,30 +130,32 @@ export default function App() {
           }
         />
 
-        <Route 
+        <Route
           path="/blogs"
           element={
             // <ProtectedRoute>
-              <Blogs />
+            <Blogs />
             // </ProtectedRoute>
-          }/>
-        <Route 
+          }
+        />
+        <Route
           path="/blogs/:slug"
           element={
             <ProtectedRoute>
               <Blog />
             </ProtectedRoute>
-          }/>
-        <Route 
+          }
+        />
+        <Route
           path="/creator/:id"
           element={
             <ProtectedRoute>
               <UserProfile>
-              <Creator />
+                <Creator />
               </UserProfile>
             </ProtectedRoute>
-          }/>
-        
+          }
+        />
 
         <Route
           element={

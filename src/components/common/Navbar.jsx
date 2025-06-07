@@ -136,7 +136,7 @@ function Navbar() {
               <div key={index} className="relative">
                 {link.title === "Catalog" ? (
                   <div className="group">
-                    <button className="flex items-center space-x-1 text-richblack-200 hover:text-yellow-100 font-medium text-lg transition-colors duration-200 py-2">
+                    <button className="flex items-center space-x-1 text-richblack-200 hover:text-cyan-500 font-semibold text-lg transition-colors duration-200 py-2">
                       <span>{link.title}</span>
                       <IoIosArrowDown className="text-xl group-hover:rotate-180 transition-transform duration-200" />
                     </button>
@@ -149,7 +149,7 @@ function Navbar() {
                           <NavLink
                             key={idx}
                             to={`/catalog/${subLink.name.split(" ").join("-").toLowerCase()}/${subLink._id}`}
-                            className="block text-richblack-100 hover:text-yellow-100 hover:bg-richblack-700 px-4 py-3 rounded-md transition-all duration-200 text-sm font-medium"
+                            className="block text-richblack-100 hover:text-cyan-400 hover:bg-richblack-700 px-4 py-3 rounded-md transition-all duration-200 text-sm font-medium"
                           >
                             {subLink.name}
                           </NavLink>
@@ -161,10 +161,10 @@ function Navbar() {
                   <NavLink
                     to={link.path}
                     className={({ isActive }) =>
-                      `font-medium text-lg transition-colors duration-200 py-2 px-1 relative ${
+                      `font-semibold text-lg transition-colors duration-200 py-2 px-1 relative ${
                         isActive 
-                          ? "text-yellow-100" 
-                          : "text-richblack-200 hover:text-yellow-100"
+                          ? "text-cyan-500 hover:text-cyan-400" 
+                          : "text-richblack-200 hover:text-cyan-400"
                       }`
                     }
                   >
