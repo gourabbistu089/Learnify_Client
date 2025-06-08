@@ -40,7 +40,7 @@ const HeroSection = ({user}) => {
       <div className="absolute inset-0">
         {/* Gradient Orbs */}
         <motion.div
-          className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-[#6703d2]/40 to-[#4ECDC4]/20 rounded-full blur-3xl"
+          className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-[#6703d2]/30 to-[#4ECDC4]/20 rounded-full blur-3xl"
           animate={{
             x: mousePosition.x * 0.02,
             y: mousePosition.y * 0.02,
@@ -48,7 +48,7 @@ const HeroSection = ({user}) => {
           transition={{ type: "spring", stiffness: 50, damping: 20 }}
         />
         <motion.div
-          className="absolute top-3/4 right-1/4 w-80 h-80 bg-gradient-to-r from-[#45B7D1]/20 to-[#7c01b9]/50 rounded-full blur-2xl"
+          className="absolute top-3/4 right-1/4 w-80 h-80 bg-gradient-to-r from-[#45B7D1]/20 to-[#7c01b9]/30 rounded-full blur-2xl"
           animate={{
             x: -mousePosition.x * 0.015,
             y: -mousePosition.y * 0.015,
@@ -92,7 +92,7 @@ const HeroSection = ({user}) => {
   
 
       {/* Main Content */}
-      <div className="relative z-10 flex flex-col items-center min-h-screen px-6 pt-16">
+      <div className="relative z-10 flex flex-col items-center min-h-screen px-3.5 md:px-6 pt-10 md:pt-16">
         {/* Get Started Button */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -101,9 +101,9 @@ const HeroSection = ({user}) => {
           onClick={() => {navigate("/dashboard/enrolled-courses")}}
           className="group mx-auto rounded-full bg-[#16213E]/80 backdrop-blur-sm font-bold text-[#B8BCC8] transition-all duration-300 hover:scale-105 w-fit shadow-2xl shadow-[#4ECDC4]/10 border border-[#4ECDC4]/20 hover:border-[#4ECDC4]/40 cursor-pointer"
         >
-          <div className="flex flex-row items-center gap-3 rounded-full py-3 px-6 group-hover:bg-gradient-to-r group-hover:from-[#FF6B6B]/10 group-hover:to-[#4ECDC4]/10 transition-all duration-300">
+          <div className="flex flex-row items-center gap-3 rounded-full py-3 px-4  md:px-6  group-hover:bg-gradient-to-r group-hover:from-[#FF6B6B]/10 group-hover:to-[#4ECDC4]/10 transition-all duration-300">
             <p className="text-sm font-semibold">
-              {userData ? "Continue Learning" : "🎯 Get Started Today"}
+              {userData ? "🎯 Continue Learning" : "🎯 Get Started Today"}
             </p>
             <motion.div
               whileHover={{ x: 5 }}
@@ -119,7 +119,7 @@ const HeroSection = ({user}) => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-center font-bold text-5xl lg:text-7xl mt-12 leading-tight"
+          className="text-center font-bold text-5xl lg:text-7xl md:mt-12 mt-5 leading-tight"
         >
           <div className="text-white mb-4">Transform Your Future with</div>
           <HighlightText text="Learnify" />
@@ -129,7 +129,7 @@ const HeroSection = ({user}) => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="lg:w-[70%] text-center mt-8 text-xl text-[#B8BCC8] font-medium leading-relaxed"
+          className="lg:w-[70%] text-center mt-8 md:text-xl text-lg text-[#B8BCC8] font-medium leading-relaxed"
         >
           Unlock your potential with our cutting-edge learning platform. Master
           new skills, advance your career, and join thousands of successful
@@ -164,12 +164,12 @@ const HeroSection = ({user}) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.8 }}
-          className="flex gap-20 mt-20 flex-wrap justify-center"
+          className="flex md:gap-20 md:mt-20  gap-5 mt-10 flex-wrap md:justify-center"
         >
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-bold py-4 px-8 rounded-full shadow-2xl shadow-cyan-500/10 hover:shadow-cyan-500/25 transition-all duration-300 flex items-center gap-3"
+            className="bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-bold md:py-4 md:px-8 px-4 py-4 rounded-full shadow-2xl shadow-cyan-500/10 hover:shadow-cyan-500/25 transition-all duration-300 flex items-center gap-3"
           >
             <FaPlay className="text-sm" />
             Start Learning Now
@@ -178,7 +178,7 @@ const HeroSection = ({user}) => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="bg-white/10 backdrop-blur-sm text-white font-bold py-4 px-8 rounded-full border border-white/20 hover:border-[#4ECDC4]/40 hover:bg-white/15 transition-all duration-300"
+            className="bg-white/10 backdrop-blur-sm text-white font-bold py-4 px-4 md:px-8 rounded-full border border-white/20 hover:border-[#4ECDC4]/40 hover:bg-white/15 transition-all duration-300"
           >
             Watch Demo
           </motion.button>

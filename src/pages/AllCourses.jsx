@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { FaHome, FaSearch, FaTimes } from 'react-icons/fa';
 import HighlightText from '../components/core/Homepage/HighlightText';
 import { FiUser } from "react-icons/fi";
+import CodeBackground from '../components/CodeBackground';
 
 function AllCourses() {
   const [courses, setCourses] = useState([]);
@@ -55,7 +56,8 @@ function AllCourses() {
   };
 
   return (
-    <div className="p-8 bg-gradient-to-tr from-[#181C14] to-[#040D12] min-h-screen">
+    <div className="p-8 bg-gradient-to-tr from-[#18f1C14] to-[#040dD12] min-h-screen">
+      <CodeBackground className="absolute w-screen min-h-screen bg-gray-800 overflow-hidden " />
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
         <motion.div

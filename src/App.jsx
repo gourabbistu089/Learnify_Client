@@ -39,6 +39,7 @@ import MyBlogs from "./pages/MyBlogs.jsx";
 import EditBlog from "./pages/EditBlog.jsx";
 import Creator from "./pages/Creator.jsx";
 import UserProfile from "./components/UserProfile.jsx";
+import CodeBackground from "./components/CodeBackground.jsx";
 
 export default function App() {
   const { user } = useSelector((state) => state.auth);

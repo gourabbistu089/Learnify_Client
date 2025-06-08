@@ -42,7 +42,8 @@ function Home() {
       <section className="relative mx-auto flex flex-col w-11/12 items-center text-white justify-between max-w-maxContent">
         <HeroSection user={user} />
 
-        {/* Code Section 1 */}
+        <div>
+              {/* Code Section 1 */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -119,6 +120,7 @@ print(f"The factorial is {factorial(number)}")
           />
         </motion.div>
 
+        </div>
         {/* Blog Explore More Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -165,10 +167,7 @@ print(f"The factorial is {factorial(number)}")
       {/* Section 3 */}
 
       <div className=" bg-richblack-900 text-white md:px-32 mx-auto px-6">
-    
         {/* Testimonials */}
-
-       
 
         <TestimonialSection />
       </div>
