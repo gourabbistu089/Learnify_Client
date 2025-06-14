@@ -8,6 +8,7 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import HightlightText from "../components/core/Homepage/HighlightText";
 
 import {
   Heart,
@@ -65,16 +66,15 @@ function Blog() {
     fetchBlogData();
   }, [slug]);
 
-   useEffect(() => {
+  useEffect(() => {
     const containers = document.querySelectorAll(".ql-code-block-container");
 
     containers.forEach((container) => {
-
       const button = document.createElement("button");
       button.innerText = "Copy";
       button.className = "copy-btn";
-        // Add click event listener
-         button.addEventListener("click", () => {
+      // Add click event listener
+      button.addEventListener("click", () => {
         const codeLines = Array.from(
           container.querySelectorAll(".ql-code-block")
         ).map((div) => div.innerText);
@@ -91,10 +91,8 @@ function Blog() {
       // Ensure container is positioned for absolute button placement
       container.style.position = "relative";
       container.appendChild(button);
-
     });
   }, [blogData]);
-
 
   // console.log("isLiked", isLiked);
   console.log("blogData", blogData);
@@ -221,7 +219,8 @@ function Blog() {
           style={{
             backgroundImage: `radial-gradient(circle at 3px 3px, rgba(102, 55, 241, .4) 2px, transparent 0)`,
             backgroundSize: "50px 50px",
-          }}z
+          }}
+          z
         ></div>
       </div>
 
@@ -281,18 +280,21 @@ function Blog() {
               <span className="md:text-sm text-xs md:font-medium text-gray-300">
                 Featured Story
               </span>
-              <div className="w-2 h-2 bg-[#10B981] rounded-full animate-pulse hidden md:block" ></div>
+              <div className="w-2 h-2 bg-[#10B981] rounded-full animate-pulse hidden md:block"></div>
             </div>
           </motion.div>
 
           {/* Title */}
           <motion.h1
-            className="text-4xl md:text-6xl font-black mb-8 leading-tight"
+            className={`text-4xl md:text-5xl lg:text-6xl font-black mb-6 bg-gradient-to-r from-white via-[#afd8ff] to-purple-50 bg-clip-text text-transparent leading-tight
+                         transform transition-all duration-1000 ease-out
+                       
+                           translate-y-0 opacity-100`}
+            style={{ textShadow: "0 0 40px rgba(255,255,255,0.1)" }}
             variants={itemVariants}
           >
-            <span className="bg-gradient-to-r from-[#6366F1]/80 via-[#8B5CF6]/85 to-[#EC4899]/80 bg-clip-text text-transparent">
-              {blogData.title}
-            </span>
+            {blogData.title}
+            {/* <HightlightText text={blogData.title} /> */}
           </motion.h1>
 
           {/* Author and Date */}
@@ -304,11 +306,11 @@ function Blog() {
               <div className="relative">
                 <div className="w-16 h-16 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">
                   <Link to={`/creator/${blogData.author?._id}`}>
-                  <img
-                    className="w-full h-full object-cover rounded-full"
-                    src={blogData.author?.image}
-                    alt={blogData.author?.firstName}
-                  />
+                    <img
+                      className="w-full h-full object-cover rounded-full"
+                      src={blogData.author?.image}
+                      alt={blogData.author?.firstName}
+                    />
                   </Link>
                 </div>
                 {/* <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-[#10B981] rounded-full border-2 border-[#0A0A0A]"></div> */}
@@ -369,7 +371,10 @@ function Blog() {
         <motion.div className="mb-16" variants={itemVariants}>
           <div className="relative bg-gradient-to-br from-[#1A1A1A]/90 to-[#0F0F0F]/80 backdrop-blur-sm border border-richblack-600/50 rounded-3xl p-0 md:p-12 shadow-2xl ">
             <div className="relative ">
-              <div  className="blog-content dark-theme " dangerouslySetInnerHTML={{ __html: blogData.content }} />
+              <div
+                className="blog-content dark-theme "
+                dangerouslySetInnerHTML={{ __html: blogData.content }}
+              />
               {/* {} */}
             </div>
           </div>
@@ -436,7 +441,7 @@ function Blog() {
                   ) : (
                     <FontAwesomeIcon
                       icon={faHeart}
-                      style={{ color: "#fffeed" , fontSize: "22px"}}
+                      style={{ color: "#fffeed", fontSize: "22px" }}
                     />
                   )}
                   {/* <Heart
