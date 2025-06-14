@@ -244,7 +244,7 @@ function Blog() {
 
       {/* Main Content */}
       <motion.div
-        className="max-w-6xl mx-auto px-6 pt-16 pb-12 relative z-10"
+        className="max-w-6xl mx-auto md:px-6 px-1 pt-16 pb-12 relative z-10"
         variants={containerVariants}
         initial="hidden"
         animate="visible"

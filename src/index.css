@@ -421,7 +421,8 @@ body {
   background: #0d1117;
   border: 1px solid #30363d;
   border-radius: 8px;
-  overflow: hidden;
+  /* overflow: hidden; */
+  overflow: scroll;
 }
 
 .blog-content.dark-theme th {
@@ -513,7 +514,7 @@ body {
 @media (max-width: 480px) {
 
   .blog-content.dark-theme {
-    padding: 1.25rem;
+    padding: .1rem;
     border-radius: 8px;
   }
   .blog-content.dark-theme .ql-code-block-container {
@@ -532,7 +533,9 @@ body {
     /* padding: 0.75rem; */
     font-size: 0.8125rem;
   }
-  
+  .blog-content.dark-theme table {
+  overflow-x: auto;
+}
   .blog-content.dark-theme th,
   .blog-content.dark-theme td {
     padding: 0.5rem 0.75rem;

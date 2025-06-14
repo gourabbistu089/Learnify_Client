@@ -16,6 +16,7 @@ import {
   BookOpen,
 } from "lucide-react";
 import { createBlog } from "../services/apiCalls/blogCall";
+import { useNavigate } from "react-router-dom";
 
 function CreateBlog() {
   const [formData, setFormData] = useState({
@@ -35,7 +36,7 @@ function CreateBlog() {
   const [errors, setErrors] = useState({});
   const [wordCount, setWordCount] = useState(0);
   const [readingTime, setReadingTime] = useState(0);
-
+const navigate = useNavigate();
   const fileInputRef = useRef(null);
 
   const categories = [
@@ -211,7 +212,7 @@ function CreateBlog() {
         status: "",
         featuredImage: null,
       });
-      // navigate('/blogs');
+       navigate(`/blogs/${response.slug}`);
     } catch (error) {
       console.error("Error creating blog:", error);
     } finally {
