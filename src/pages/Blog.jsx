@@ -294,7 +294,6 @@ function Blog() {
             variants={itemVariants}
           >
             {blogData.title}
-            {/* <HightlightText text={blogData.title} /> */}
           </motion.h1>
 
           {/* Author and Date */}
