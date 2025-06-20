@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import {
   getBlogBySlug,
   toggleLike,
@@ -34,6 +34,7 @@ import {
   Star,
   Zap,
   Coffee,
+  Pencil,
 } from "lucide-react";
 import { useSelector } from "react-redux";
 import { comment } from "postcss";
@@ -48,6 +49,7 @@ function Blog() {
   const [newComment, setNewComment] = useState("");
   const [showComments, setShowComments] = useState(true);
   const [index, setIndex] = useState(4);
+  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchBlogData = async () => {
@@ -276,11 +278,30 @@ function Blog() {
 
             {/* Badge */}
             <div className="hidden md:inline-flex items-center gap-2 md:px-4 md:py-2 px-2 bg-[#1A1A1A] border border-[#6366F1]/20 rounded-full">
-              <Zap className="w-4 h-4 text-[#6366F1]" />
+            <div className="flex items-center gap-1">
+             {
+              blogData.author?._id == user?._id ? (
+                <div className="flex items-center gap-1 cursor-pointer" onClick={() => navigate(`/dashboard/edit-blog/${blogData.slug}`)}>
+                  <Pencil className="w-4 h-4 text-[#6366F1]" />
+                  <span className="md:text-sm text-xs md:font-medium text-gray-300">
+                    Your Story
+                  </span>
+                  <div className="w-2 h-2 bg-[#10B981] rounded-full animate-pulse hidden md:block"></div>
+                </div>
+                ) :
+                (
+                  <>
+                    <Zap className="w-4 h-4 text-[#6366F1]" />
               <span className="md:text-sm text-xs md:font-medium text-gray-300">
                 Featured Story
               </span>
               <div className="w-2 h-2 bg-[#10B981] rounded-full animate-pulse hidden md:block"></div>
+                </>
+              )
+            }
+             
+            
+            </div>
             </div>
           </motion.div>
 

@@ -39,7 +39,7 @@ function Blogs() {
   const [blogs, setBlogs] = useState([]);
   const [followingBlogs, setFollowingBlogs] = useState([]);
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(6);
+  const [limit, setLimit] = useState(18);
   const [hashMore, setHashMore] = useState(true);
   const [totalBlogs, setTotalBlogs] = useState(null);
   const { user } = useSelector((state) => state.auth);
